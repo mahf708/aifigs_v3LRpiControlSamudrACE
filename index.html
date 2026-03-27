@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ACE2-EAMv3 piControl Diagnostics</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark-theme">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light-theme" disabled>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
 <style>
   :root {
     --bg: #0f1117;
@@ -16,6 +20,19 @@
     --accent-hover: #8aa3ff;
     --sidebar-w: 280px;
     --code-bg: #161922;
+    --card-img-bg: #fff;
+  }
+  html.light {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --surface2: #eef0f4;
+    --border: #d8dbe4;
+    --text: #1a1d27;
+    --text-dim: #5c6070;
+    --accent: #4a6adf;
+    --accent-hover: #3a56c0;
+    --code-bg: #fafbfc;
+    --card-img-bg: #fff;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -38,13 +55,34 @@
     top: 0; bottom: 0; left: 0;
     z-index: 100;
   }
+  #sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px 4px;
+  }
   #sidebar h1 {
     font-size: 15px;
     font-weight: 700;
-    padding: 0 20px 4px;
     color: var(--accent);
     letter-spacing: 0.5px;
   }
+  #theme-toggle {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  #theme-toggle:hover { color: var(--text); border-color: var(--accent); }
   #sidebar .subtitle {
     font-size: 12px;
     color: var(--text-dim);
@@ -132,7 +170,7 @@
     width: 100%;
     aspect-ratio: 4/3;
     object-fit: contain;
-    background: #fff;
+    background: var(--card-img-bg);
     display: block;
   }
   .card .label {
@@ -244,14 +282,21 @@
   #code-modal .modal-header button:hover { color: var(--text); }
   #code-modal pre {
     overflow: auto;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+  }
+  #code-modal pre code {
+    display: block;
     padding: 20px;
     font-size: 13px;
     line-height: 1.6;
     font-family: 'SF Mono', 'Fira Code', monospace;
-    color: var(--text);
-    flex: 1;
-    margin: 0;
     tab-size: 4;
+  }
+  /* override hljs background to match modal */
+  #code-modal pre code.hljs {
+    background: var(--code-bg);
   }
 
   /* Search */
@@ -282,7 +327,10 @@
 <body>
 
 <nav id="sidebar">
-  <h1>ACE2-EAMv3</h1>
+  <div id="sidebar-header">
+    <h1>ACE2-EAMv3</h1>
+    <button id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark theme">&#9790;</button>
+  </div>
   <div class="subtitle">piControl Diagnostics Viewer</div>
   <div id="search-box">
     <input type="text" id="search" placeholder="Filter plots..." autocomplete="off">
@@ -313,6 +361,32 @@
 </div>
 
 <script>
+// ---- Theme ----
+function toggleTheme() {
+  const isLight = document.documentElement.classList.toggle('light');
+  document.getElementById('hljs-dark-theme').disabled = isLight;
+  document.getElementById('hljs-light-theme').disabled = !isLight;
+  document.getElementById('theme-toggle').innerHTML = isLight ? '&#9728;' : '&#9790;';
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  // re-highlight open code if any
+  const codeEl = document.getElementById('code-content');
+  if (document.getElementById('code-modal').classList.contains('open') && codeEl.dataset.highlighted) {
+    codeEl.removeAttribute('data-highlighted');
+    hljs.highlightElement(codeEl);
+  }
+}
+(function initTheme() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    document.documentElement.classList.add('light');
+    document.getElementById('hljs-dark-theme').disabled = true;
+    document.getElementById('hljs-light-theme').disabled = false;
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('theme-toggle').innerHTML = '&#9728;';
+    });
+  }
+})();
+
 const BASE = "v3.LR.piControl.SamudrACE";
 
 const categories = [
@@ -423,7 +497,7 @@ function renderNav(filter) {
       ? cat.files.filter(f => f.toLowerCase().includes(q) || cat.title.toLowerCase().includes(q)).length
       : cat.files.length;
     if (q && matchCount === 0 && !cat.title.toLowerCase().includes(q)) return '';
-    return `<div class="nav-item" data-cat="${cat.id}" onclick="scrollTo('${cat.id}')">
+    return `<div class="nav-item" data-cat="${cat.id}" onclick="navScrollTo('${cat.id}')">
       <span>${cat.title}</span>
       <span class="count">${q ? matchCount + '/' : ''}${cat.files.length}</span>
     </div>`;
@@ -464,7 +538,7 @@ function renderContent(filter) {
   }).join('');
 }
 
-function scrollTo(id) {
+function navScrollTo(id) {
   document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
   document.querySelector(`.nav-item[data-cat="${id}"]`)?.classList.add('active');
   document.getElementById('section-' + id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -521,17 +595,28 @@ async function showCode(filename) {
   const modal = document.getElementById('code-modal');
   const codeEl = document.getElementById('code-content');
 
+  function highlightCode(text) {
+    codeEl.textContent = text;
+    codeEl.className = 'language-python';
+    codeEl.removeAttribute('data-highlighted');
+    hljs.highlightElement(codeEl);
+  }
+
   if (codeCache[filename]) {
-    codeEl.textContent = codeCache[filename];
+    highlightCode(codeCache[filename]);
   } else {
+    codeEl.className = '';
+    codeEl.removeAttribute('data-highlighted');
     codeEl.textContent = 'Loading...';
     try {
       const resp = await fetch(`${BASE}/${filename}`);
       if (!resp.ok) throw new Error(resp.statusText);
       const text = await resp.text();
       codeCache[filename] = text;
-      codeEl.textContent = text;
+      highlightCode(text);
     } catch (e) {
+      codeEl.className = '';
+      codeEl.removeAttribute('data-highlighted');
       codeEl.textContent = `Failed to load ${filename}: ${e.message}\n\nNote: Code viewing requires serving this page via HTTP (e.g. python -m http.server).`;
     }
   }

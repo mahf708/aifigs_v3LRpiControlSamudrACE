@@ -229,7 +229,16 @@
     </table>
 
     <h2>Diagnostic Figures</h2>
-    <h3>MPAS-O Depth Coarsening (remapped)</h3>
+    <h3>EAM</h3>
+<div>
+<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="eam_tape1_TS.png"><img src="eam_tape1_TS.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>eam_tape1_TS.png</small></div>
+<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="eam_tape1_LHFLX.png"><img src="eam_tape1_LHFLX.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>eam_tape1_LHFLX.png</small></div>
+<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="eam_tape1_SHFLX.png"><img src="eam_tape1_SHFLX.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>eam_tape1_SHFLX.png</small></div>
+<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="eam_tape1_FLUT.png"><img src="eam_tape1_FLUT.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>eam_tape1_FLUT.png</small></div>
+<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="eam_tape1_PRECT.png"><img src="eam_tape1_PRECT.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>eam_tape1_PRECT.png</small></div>
+<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="eam_tape1_ICEFRAC.png"><img src="eam_tape1_ICEFRAC.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>eam_tape1_ICEFRAC.png</small></div>
+</div>
+<h3>MPAS-O Depth Coarsening (remapped)</h3>
 <div>
 <div style="display:inline-block;margin:6px;vertical-align:top;"><a href="mpaso_depth_temperatureCoarsened_0_remapped.png"><img src="mpaso_depth_temperatureCoarsened_0_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_depth_temperatureCoarsened_0_remapped.png</small></div>
 <div style="display:inline-block;margin:6px;vertical-align:top;"><a href="mpaso_depth_salinityCoarsened_0_remapped.png"><img src="mpaso_depth_salinityCoarsened_0_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_depth_salinityCoarsened_0_remapped.png</small></div>
@@ -263,6 +272,51 @@
 </div>
 
 
+
+    <h2>Performance Timing Summary</h2>
+    <div style="background:#f8f8f8;padding:10px;border:1px solid #ddd;
+                font-family:monospace;font-size:12px;overflow-x:auto;">
+    <pre>***** GLOBAL STATISTICS (   512 MPI TASKS) *****</pre>
+<pre>name                                            on  processes  threads        count      walltotal   wallmax (proc   thrd  )   wallmin (proc   thrd  )</pre>
+<pre>"CPL:INIT"                                       -        512      512 5.120000e+02   3.739056e+04    73.116 (   487      0)    72.930 (   127      0)</pre>
+<pre>"CPL:cime_pre_init1"                             -        512      512 5.120000e+02   1.247023e+03     2.522 (   487      0)     2.337 (   127      0)</pre>
+<pre>"CPL:mpi_init"                                   -        512      512 5.120000e+02   1.018568e+03     2.076 (   483      0)     1.890 (    64      0)</pre>
+<pre>"CPL:ESMF_Initialize"                            -        512      512 5.120000e+02   6.010324e-01     0.002 (   286      0)     0.000 (   128      0)</pre>
+<pre>"CPL:cime_pre_init2"                             -        512      512 5.120000e+02   1.187480e+02     0.235 (   494      0)     0.229 (   368      0)</pre>
+<pre>"CPL:seq_infodata_init"                          -        512      512 5.120000e+02   1.750756e+01     0.071 (   401      0)     0.007 (   494      0)</pre>
+<pre>"CPL:seq_timemgr_clockInit"                      -        512      512 5.120000e+02   3.112554e+00     0.009 (   505      0)     0.002 (   169      0)</pre>
+<pre>"CPL:cime_init"                                  -        512      512 5.120000e+02   3.602413e+04    70.362 (   305      0)    70.358 (   465      0)</pre>
+<pre>"CPL:init_comps"                                 -        512      512 5.120000e+02   3.084879e+04    60.256 (   122      0)    60.239 (   511      0)</pre>
+<pre>"CPL:comp_init_pre_all"                          -        512      512 5.120000e+02   1.669507e-01     0.002 (   303      0)     0.000 (   454      0)</pre>
+<pre>"comp_init_cc_iac"                               -        512      512 5.120000e+02   2.062275e+00     0.006 (   447      0)     0.003 (   496      0)</pre>
+<pre>"z_i:comp_init"                                  -        512      512 5.120000e+02   5.681493e-01     0.002 (    52      0)     0.000 (   235      0)</pre>
+<pre>"CPL:comp_init_cc_atm"                           -        512      512 5.120000e+02   1.446850e+04    28.259 (   363      0)    28.259 (   384      0)</pre>
+<pre>"a_i:comp_init"                                  -        512      512 1.024000e+03   1.611165e+04    31.524 (   381      0)    31.369 (   129      0)</pre>
+<pre>"a_i:cam_init"                                   -        512      512 5.120000e+02   1.435865e+04    28.046 (   130      0)    28.042 (   270      0)</pre>
+<pre>"a_i:cam_initfiles_open"                         -        512      512 5.120000e+02   7.290612e+01     0.144 (   259      0)     0.141 (   327      0)</pre>
+<pre>"a_i:cam_initial"                                -        512      512 5.120000e+02   2.340011e+03     4.571 (   188      0)     4.569 (   152      0)</pre>
+<pre>"a_i:dyn_init1"                                  -        512      512 5.120000e+02   6.027227e+01     0.122 (   305      0)     0.111 (   338      0)</pre>
+<pre>"a_i:hycoef_init"                                -        512      512 5.120000e+02   1.064723e+01     0.024 (   289      0)     0.017 (    95      0)</pre>
+<pre>"a_i:prim_init1"                                 -        512      512 5.120000e+02   4.064328e+01     0.086 (   178      0)     0.073 (   456      0)</pre>
+<pre>"a_i:repro_sum_finalsum"                         -        512      512 4.505600e+04   1.615520e-02     0.000 (   156      0)     0.000 (   314      0)</pre>
+<pre>"a_i:compose_init"                               -        512      512 5.120000e+02   9.125530e+00     0.021 (   273      0)     0.015 (    64      0)</pre>
+<pre>"a_i:sl_init1"                                   -        512      512 5.120000e+02   2.551499e+00     0.010 (   264      0)     0.002 (   506      0)</pre>
+<pre>"a_i:phys_grid_init"                             -        512      512 5.120000e+02   1.245240e+01     0.031 (   338      0)     0.020 (   263      0)</pre>
+<pre>"a_i:initial_conds"                              -        512      512 5.120000e+02   2.230956e+03     4.371 (    79      0)     4.344 (   403      0)</pre>
+<pre>"a_i:PIO:initdecomp"                             -        512      512 3.072000e+03   2.201741e+01     0.045 (     3      0)     0.042 (   141      0)</pre>
+<pre>"a_i:PIO:PIOc_initdecomp"                        -        512      512 3.072000e+03   2.196260e+01     0.045 (     3      0)     0.042 (   141      0)</pre>
+<pre>"a_i:dyn_init2"                                  -        512      512 5.120000e+02   2.947287e+01     0.069 (   400      0)     0.051 (    15      0)</pre>
+<pre>"a_i:prim_init2"                                 -        512      512 5.120000e+02   2.639779e+01     0.063 (   400      0)     0.047 (   128      0)</pre>
+<pre>"a_i:phys_init"                                  -        512      512 5.120000e+02   1.184326e+04    23.136 (   395      0)    23.126 (   265      0)</pre>
+<pre>"a_i:rad_cnst_init"                              -        512      512 5.120000e+02   4.515457e+02     0.883 (   215      0)     0.880 (    82      0)</pre>
+<pre>"a_i:solar_data_init"                            -        512      512 5.120000e+02   2.729377e+01     0.053 (   114      0)     0.053 (   410      0)</pre>
+<pre>"a_i:chem_init"                                  -        512      512 5.120000e+02   7.814468e+03    15.265 (   319      0)    15.261 (   312      0)</pre>
+<pre>"a_i:prescribed_volcaero_init"                   -        512      512 5.120000e+02   1.693400e-04     0.000 (   320      0)     0.000 (     2      0)</pre>
+<pre>"a_i:init_ocean_data"                            -        512      512 5.120000e+02   2.876068e+01     0.060 (   182      0)     0.055 (   401      0)</pre>
+<pre>"a_i:radiation_init"                             -        512      512 5.120000e+02   2.049514e+02     0.418 (   393      0)     0.380 (    47      0)</pre>
+<pre>"a_i:tropopause_init"                            -        512      512 5.120000e+02   2.307609e+02     0.895 (    95      0)     0.022 (    41      0)</pre>
+<pre>"CPL:comp_init_cc_lnd"                           -        512      512 5.120000e+02   8.500137e+03    16.602 (   300      0)    16.602 (    99      0)</pre>
+    </div>
 
     <hr/><p style="color:#888;font-size:11px;">Generated by verify_fme_output.py</p>
     </body></html>

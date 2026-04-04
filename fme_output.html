@@ -80,7 +80,7 @@
     </head><body>
     <header>
       <h1>FME Online Output Verification</h1>
-      <span class="status">23 issues in 7/9 components</span>
+      <span class="status">13 issues in 2/9 components</span>
     </header>
     <div class="container">
 
@@ -100,40 +100,30 @@
     <table>
     <tr><th>Component</th><th>Status</th><th>Issues</th></tr>
     <tr><td>EAM</td><td class="fail">FAIL</td><td>8</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td class="fail">FAIL</td><td>6</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td class="fail">FAIL</td><td>2</td></tr>
-<tr><td>MPAS-O Derived Fields (native)</td><td class="fail">FAIL</td><td>2</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td class="fail">FAIL</td><td>2</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td class="fail">FAIL</td><td>5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td class="pass">PASS</td><td>0</td></tr>
+<tr><td>MPAS-O Derived Fields (native)</td><td class="pass">PASS</td><td>0</td></tr>
+<tr><td>MPAS-O Derived Fields (remapped)</td><td class="pass">PASS</td><td>0</td></tr>
 <tr><td>MPAS-O Vertical Reduce (native)</td><td class="pass">PASS</td><td>0</td></tr>
 <tr><td>MPAS-O Vertical Reduce (remapped)</td><td class="pass">PASS</td><td>0</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td class="fail">FAIL</td><td>2</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td class="fail">FAIL</td><td>1</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td class="pass">PASS</td><td>0</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td class="pass">PASS</td><td>0</td></tr>
 
     </table>
 
-    <details><summary>Show all 23 issues</summary><table><tr><th>Component</th><th>Issue</th></tr><tr><td>EAM</td><td>tape3/T_1: min=37.79 below 150</td></tr>
-<tr><td>EAM</td><td>tape3/T_2: min=44.07 below 150</td></tr>
+    <details><summary>Show all 13 issues</summary><table><tr><th>Component</th><th>Issue</th></tr><tr><td>EAM</td><td>tape3/T_1: min=37.79 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_2: min=44.18 below 150</td></tr>
 <tr><td>EAM</td><td>tape3/T_3: min=44.28 below 150</td></tr>
 <tr><td>EAM</td><td>tape3/T_4: min=58.27 below 150</td></tr>
-<tr><td>EAM</td><td>tape3/T_5: min=50.95 below 150</td></tr>
-<tr><td>EAM</td><td>tape3/T_6: min=110.8 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_5: min=48.89 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_6: min=111.4 below 150</td></tr>
 <tr><td>EAM</td><td>tape3/T_7: min=52.63 below 150</td></tr>
 <tr><td>EAM</td><td>tape3/T_8: min=0.000184 below 150</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>temperatureCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>salinityCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>salinityCoarsened: max=49.99 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityZonalCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityMeridionalCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>layerThicknessCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_5: max=49.41 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_8: max=43.49 above 42</td></tr>
-<tr><td>MPAS-O Derived Fields (native)</td><td>surfaceHeatFluxTotal: min=-1400 below -1000</td></tr>
-<tr><td>MPAS-O Derived Fields (native)</td><td>surfaceHeatFluxTotal: max=1454 above 1000</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/surfaceHeatFluxTotal: min=-1031 below -1000</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/surfaceHeatFluxTotal: max=1414 above 1000</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>snowVolumeTotal: min=-1.734e-30 below 0</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>surfaceTemperatureMean: min=-41.19 below 200</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/surfaceTemperatureMean: min=-36.98 below 200</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>temperatureCoarsened: 25 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>salinityCoarsened: 25 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityZonalCoarsened: 25 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityMeridionalCoarsened: 25 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>layerThicknessCoarsened: 25 depth layers, expected 19</td></tr>
 </table></details>
 
     <h2 id="File_Inventory">File Inventory</h2>
@@ -361,17 +351,17 @@
 <tr><td>MPAS-SI Derived Fields (native)</td><td>iceAreaTotal</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
 <tr><td>MPAS-SI Derived Fields (native)</td><td>iceVolumeTotal</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
 <tr><td>MPAS-SI Derived Fields (native)</td><td>snowVolumeTotal</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>iceThicknessMean</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>surfaceTemperatureMean</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>airStressZonal</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>airStressMeridional</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>iceThicknessMean</td><td>930,088</td><td>96,181</td><td>833,907</td><td class="fail">89.7%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>surfaceTemperatureMean</td><td>930,088</td><td>96,181</td><td>833,907</td><td class="fail">89.7%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>airStressZonal</td><td>930,088</td><td>96,181</td><td>833,907</td><td class="fail">89.7%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>airStressMeridional</td><td>930,088</td><td>96,181</td><td>833,907</td><td class="fail">89.7%</td></tr>
 <tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceAreaTotal</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
 <tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceVolumeTotal</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
 <tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/snowVolumeTotal</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceThicknessMean</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/surfaceTemperatureMean</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/airStressZonal</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/airStressMeridional</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceThicknessMean</td><td>129,600</td><td>22,022</td><td>107,578</td><td class="fail">83.0%</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/surfaceTemperatureMean</td><td>129,600</td><td>22,022</td><td>107,578</td><td class="fail">83.0%</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/airStressZonal</td><td>129,600</td><td>22,022</td><td>107,578</td><td class="fail">83.0%</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/airStressMeridional</td><td>129,600</td><td>22,022</td><td>107,578</td><td class="fail">83.0%</td></tr>
 
     </table>
     </details>
@@ -447,38 +437,38 @@
     <table class="timing-table">
     <tr><td>*****</td><td>GLOBAL</td><td>STATISTICS</td><td>(</td><td>512</td><td>MPI</td><td>TASKS)</td><td>*****</td></tr>
 <tr><td>name</td><td>on</td><td>processes</td><td>threads</td><td>count</td><td>walltotal</td><td>wallmax</td><td>(proc</td><td>thrd</td><td>)</td><td>wallmin</td><td>(proc</td><td>thrd</td><td>)</td></tr>
-<tr><td>"CPL:INIT"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.312218e+04</td><td>84.669</td><td>(</td><td>74</td><td>0)</td><td>84.065</td><td>(</td><td>159</td><td>0)</td></tr>
-<tr><td>"CPL:cime_pre_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.312563e+03</td><td>3.010</td><td>(</td><td>74</td><td>0)</td><td>2.405</td><td>(</td><td>239</td><td>0)</td></tr>
-<tr><td>"CPL:mpi_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>9.145660e+02</td><td>2.232</td><td>(</td><td>1</td><td>0)</td><td>1.628</td><td>(</td><td>177</td><td>0)</td></tr>
-<tr><td>"CPL:ESMF_Initialize"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.560283e-01</td><td>0.002</td><td>(</td><td>417</td><td>0)</td><td>0.000</td><td>(</td><td>41</td><td>0)</td></tr>
-<tr><td>"CPL:cime_pre_init2"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.316682e+02</td><td>0.260</td><td>(</td><td>151</td><td>0)</td><td>0.254</td><td>(</td><td>332</td><td>0)</td></tr>
-<tr><td>"CPL:seq_infodata_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.137086e+01</td><td>0.102</td><td>(</td><td>288</td><td>0)</td><td>0.007</td><td>(</td><td>325</td><td>0)</td></tr>
-<tr><td>"CPL:seq_timemgr_clockInit"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.834672e+00</td><td>0.011</td><td>(</td><td>199</td><td>0)</td><td>0.004</td><td>(</td><td>2</td><td>0)</td></tr>
-<tr><td>"CPL:cime_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.167745e+04</td><td>81.403</td><td>(</td><td>221</td><td>0)</td><td>81.400</td><td>(</td><td>507</td><td>0)</td></tr>
-<tr><td>"CPL:init_comps"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.611898e+04</td><td>70.550</td><td>(</td><td>127</td><td>0)</td><td>70.533</td><td>(</td><td>511</td><td>0)</td></tr>
-<tr><td>"CPL:comp_init_pre_all"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.290550e-01</td><td>0.001</td><td>(</td><td>453</td><td>0)</td><td>0.000</td><td>(</td><td>237</td><td>0)</td></tr>
-<tr><td>"comp_init_cc_iac"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.422723e+00</td><td>0.007</td><td>(</td><td>56</td><td>0)</td><td>0.004</td><td>(</td><td>446</td><td>0)</td></tr>
-<tr><td>"z_i:comp_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>5.759100e-01</td><td>0.001</td><td>(</td><td>409</td><td>0)</td><td>0.000</td><td>(</td><td>395</td><td>0)</td></tr>
-<tr><td>"CPL:comp_init_cc_atm"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.882072e+04</td><td>36.759</td><td>(</td><td>127</td><td>0)</td><td>36.759</td><td>(</td><td>213</td><td>0)</td></tr>
-<tr><td>"a_i:comp_init"</td><td>-</td><td>512</td><td>512</td><td>1.024000e+03</td><td>2.067248e+04</td><td>40.432</td><td>(</td><td>381</td><td>0)</td><td>40.272</td><td>(</td><td>129</td><td>0)</td></tr>
-<tr><td>"a_i:cam_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.871122e+04</td><td>36.547</td><td>(</td><td>4</td><td>0)</td><td>36.544</td><td>(</td><td>435</td><td>0)</td></tr>
-<tr><td>"a_i:cam_initfiles_open"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>7.404050e+01</td><td>0.146</td><td>(</td><td>180</td><td>0)</td><td>0.144</td><td>(</td><td>384</td><td>0)</td></tr>
-<tr><td>"a_i:cam_initial"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.620161e+03</td><td>7.071</td><td>(</td><td>0</td><td>0)</td><td>7.071</td><td>(</td><td>240</td><td>0)</td></tr>
-<tr><td>"a_i:dyn_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>8.028151e+01</td><td>0.174</td><td>(</td><td>234</td><td>0)</td><td>0.132</td><td>(</td><td>8</td><td>0)</td></tr>
-<tr><td>"a_i:hycoef_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.288909e+01</td><td>0.029</td><td>(</td><td>211</td><td>0)</td><td>0.021</td><td>(</td><td>147</td><td>0)</td></tr>
-<tr><td>"a_i:prim_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.724887e+01</td><td>0.100</td><td>(</td><td>32</td><td>0)</td><td>0.087</td><td>(</td><td>413</td><td>0)</td></tr>
-<tr><td>"a_i:repro_sum_finalsum"</td><td>-</td><td>512</td><td>512</td><td>4.505600e+04</td><td>1.544533e-02</td><td>0.000</td><td>(</td><td>91</td><td>0)</td><td>0.000</td><td>(</td><td>403</td><td>0)</td></tr>
-<tr><td>"a_i:compose_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>9.025585e+00</td><td>0.021</td><td>(</td><td>235</td><td>0)</td><td>0.014</td><td>(</td><td>148</td><td>0)</td></tr>
-<tr><td>"a_i:sl_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.160658e+00</td><td>0.009</td><td>(</td><td>106</td><td>0)</td><td>0.001</td><td>(</td><td>361</td><td>0)</td></tr>
-<tr><td>"a_i:phys_grid_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.957083e+01</td><td>0.064</td><td>(</td><td>37</td><td>0)</td><td>0.020</td><td>(</td><td>228</td><td>0)</td></tr>
-<tr><td>"a_i:initial_conds"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.480640e+03</td><td>6.812</td><td>(</td><td>261</td><td>0)</td><td>6.786</td><td>(</td><td>400</td><td>0)</td></tr>
-<tr><td>"a_i:PIO:initdecomp"</td><td>-</td><td>512</td><td>512</td><td>3.072000e+03</td><td>2.994727e+01</td><td>0.061</td><td>(</td><td>430</td><td>0)</td><td>0.057</td><td>(</td><td>188</td><td>0)</td></tr>
-<tr><td>"a_i:PIO:PIOc_initdecomp"</td><td>-</td><td>512</td><td>512</td><td>3.072000e+03</td><td>2.940893e+01</td><td>0.060</td><td>(</td><td>388</td><td>0)</td><td>0.056</td><td>(</td><td>223</td><td>0)</td></tr>
-<tr><td>"a_i:dyn_init2"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.274038e+01</td><td>0.073</td><td>(</td><td>400</td><td>0)</td><td>0.058</td><td>(</td><td>191</td><td>0)</td></tr>
+<tr><td>"CPL:INIT"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.756605e+04</td><td>92.973</td><td>(</td><td>361</td><td>0)</td><td>92.825</td><td>(</td><td>150</td><td>0)</td></tr>
+<tr><td>"CPL:cime_pre_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.301067e+03</td><td>2.611</td><td>(</td><td>361</td><td>0)</td><td>2.464</td><td>(</td><td>243</td><td>0)</td></tr>
+<tr><td>"CPL:mpi_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.001317e+03</td><td>2.026</td><td>(</td><td>353</td><td>0)</td><td>1.879</td><td>(</td><td>134</td><td>0)</td></tr>
+<tr><td>"CPL:ESMF_Initialize"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>6.640310e-01</td><td>0.003</td><td>(</td><td>293</td><td>0)</td><td>0.000</td><td>(</td><td>376</td><td>0)</td></tr>
+<tr><td>"CPL:cime_pre_init2"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.302214e+02</td><td>0.257</td><td>(</td><td>54</td><td>0)</td><td>0.251</td><td>(</td><td>230</td><td>0)</td></tr>
+<tr><td>"CPL:seq_infodata_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.770494e+01</td><td>0.072</td><td>(</td><td>7</td><td>0)</td><td>0.006</td><td>(</td><td>448</td><td>0)</td></tr>
+<tr><td>"CPL:seq_timemgr_clockInit"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.381994e+00</td><td>0.010</td><td>(</td><td>101</td><td>0)</td><td>0.003</td><td>(</td><td>221</td><td>0)</td></tr>
+<tr><td>"CPL:cime_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.613395e+04</td><td>90.108</td><td>(</td><td>330</td><td>0)</td><td>90.104</td><td>(</td><td>144</td><td>0)</td></tr>
+<tr><td>"CPL:init_comps"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.018112e+04</td><td>78.484</td><td>(</td><td>76</td><td>0)</td><td>78.467</td><td>(</td><td>511</td><td>0)</td></tr>
+<tr><td>"CPL:comp_init_pre_all"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.336984e-01</td><td>0.002</td><td>(</td><td>412</td><td>0)</td><td>0.000</td><td>(</td><td>268</td><td>0)</td></tr>
+<tr><td>"comp_init_cc_iac"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.897010e+00</td><td>0.006</td><td>(</td><td>62</td><td>0)</td><td>0.002</td><td>(</td><td>194</td><td>0)</td></tr>
+<tr><td>"z_i:comp_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>5.801526e-01</td><td>0.001</td><td>(</td><td>67</td><td>0)</td><td>0.000</td><td>(</td><td>409</td><td>0)</td></tr>
+<tr><td>"CPL:comp_init_cc_atm"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.099264e+04</td><td>41.001</td><td>(</td><td>347</td><td>0)</td><td>41.001</td><td>(</td><td>141</td><td>0)</td></tr>
+<tr><td>"a_i:comp_init"</td><td>-</td><td>512</td><td>512</td><td>1.024000e+03</td><td>2.296700e+04</td><td>44.908</td><td>(</td><td>279</td><td>0)</td><td>44.753</td><td>(</td><td>132</td><td>0)</td></tr>
+<tr><td>"a_i:cam_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.087756e+04</td><td>40.778</td><td>(</td><td>326</td><td>0)</td><td>40.775</td><td>(</td><td>379</td><td>0)</td></tr>
+<tr><td>"a_i:cam_initfiles_open"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>6.526822e+01</td><td>0.129</td><td>(</td><td>326</td><td>0)</td><td>0.127</td><td>(</td><td>349</td><td>0)</td></tr>
+<tr><td>"a_i:cam_initial"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.536125e+03</td><td>6.907</td><td>(</td><td>0</td><td>0)</td><td>6.906</td><td>(</td><td>223</td><td>0)</td></tr>
+<tr><td>"a_i:dyn_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>5.900293e+01</td><td>0.119</td><td>(</td><td>376</td><td>0)</td><td>0.108</td><td>(</td><td>104</td><td>0)</td></tr>
+<tr><td>"a_i:hycoef_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.088720e+01</td><td>0.025</td><td>(</td><td>209</td><td>0)</td><td>0.017</td><td>(</td><td>60</td><td>0)</td></tr>
+<tr><td>"a_i:prim_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.963869e+01</td><td>0.083</td><td>(</td><td>481</td><td>0)</td><td>0.071</td><td>(</td><td>63</td><td>0)</td></tr>
+<tr><td>"a_i:repro_sum_finalsum"</td><td>-</td><td>512</td><td>512</td><td>4.505600e+04</td><td>1.547094e-02</td><td>0.000</td><td>(</td><td>190</td><td>0)</td><td>0.000</td><td>(</td><td>449</td><td>0)</td></tr>
+<tr><td>"a_i:compose_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>9.319986e+00</td><td>0.021</td><td>(</td><td>452</td><td>0)</td><td>0.015</td><td>(</td><td>486</td><td>0)</td></tr>
+<tr><td>"a_i:sl_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.404694e+00</td><td>0.009</td><td>(</td><td>424</td><td>0)</td><td>0.001</td><td>(</td><td>333</td><td>0)</td></tr>
+<tr><td>"a_i:phys_grid_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.263737e+01</td><td>0.032</td><td>(</td><td>60</td><td>0)</td><td>0.020</td><td>(</td><td>134</td><td>0)</td></tr>
+<tr><td>"a_i:initial_conds"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.427076e+03</td><td>6.707</td><td>(</td><td>66</td><td>0)</td><td>6.680</td><td>(</td><td>400</td><td>0)</td></tr>
+<tr><td>"a_i:PIO:initdecomp"</td><td>-</td><td>512</td><td>512</td><td>3.072000e+03</td><td>2.226422e+01</td><td>0.046</td><td>(</td><td>478</td><td>0)</td><td>0.042</td><td>(</td><td>302</td><td>0)</td></tr>
+<tr><td>"a_i:PIO:PIOc_initdecomp"</td><td>-</td><td>512</td><td>512</td><td>3.072000e+03</td><td>2.217733e+01</td><td>0.046</td><td>(</td><td>478</td><td>0)</td><td>0.042</td><td>(</td><td>356</td><td>0)</td></tr>
+<tr><td>"a_i:dyn_init2"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.076719e+01</td><td>0.070</td><td>(</td><td>400</td><td>0)</td><td>0.052</td><td>(</td><td>128</td><td>0)</td></tr>
 
     </table>
     </div>
 
     </div>
-    <footer>Generated by verify_fme_output.py &mdash; FME Online Output Processing for E3SM &mdash; 2026-04-04 12:15:22</footer>
+    <footer>Generated by verify_fme_output.py &mdash; FME Online Output Processing for E3SM &mdash; 2026-04-04 12:29:58</footer>
     </body></html>

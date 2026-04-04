@@ -2,311 +2,350 @@
     <meta charset="utf-8"/>
     <title>FME Output Verification</title>
     <style>
-      body { font-family: sans-serif; margin: 20px; max-width: 1600px; }
-      table { border-collapse: collapse; }
-      td, th { border: 1px solid #ccc; padding: 4px 8px; }
-      th { background: #eee; }
-      h2 { margin-top: 30px; border-bottom: 2px solid #336; padding-bottom: 5px; color: #336; }
-      h3 { margin-top: 20px; color: #555; }
-      .nav { background: #f4f4f4; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
+      * { box-sizing: border-box; }
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+             margin: 0; padding: 20px 30px; background: #fafafa; color: #333; }
+      h1 { color: #1a3a5c; border-bottom: 3px solid #1a3a5c; padding-bottom: 8px; }
+      h2 { color: #1a3a5c; margin-top: 35px; border-bottom: 2px solid #ddd; padding-bottom: 6px; }
+      h3 { color: #444; margin-top: 25px; }
+      h4 { color: #666; margin: 8px 0 4px; font-size: 0.95em; }
+      .status { font-size: 1.3em; font-weight: bold; color: #c33; }
+      nav { background: #fff; padding: 12px 16px; border-radius: 6px;
+             box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 15px 0;
+             display: flex; flex-wrap: wrap; gap: 8px; }
+      nav a { color: #1a3a5c; text-decoration: none; padding: 4px 10px;
+               background: #e8eef4; border-radius: 4px; font-size: 0.9em; }
+      nav a:hover { background: #1a3a5c; color: #fff; }
+      table { border-collapse: collapse; width: 100%; background: #fff;
+               box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+      td, th { border: 1px solid #ddd; padding: 6px 12px; text-align: left; }
+      th { background: #f0f3f6; font-weight: 600; }
+      .pass { color: #2a2; font-weight: bold; }
+      .fail { color: #c33; font-weight: bold; }
+      .comparison { display: flex; gap: 20px; flex-wrap: wrap; }
+      .col { flex: 1; min-width: 400px; }
+      .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+      .fig { display: inline-block; margin: 4px; vertical-align: top; }
+      .fig img { width: 400px; border: 1px solid #ccc; border-radius: 4px;
+                  transition: transform 0.2s; }
+      .fig img:hover { transform: scale(1.02); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+      .fig span { display: block; font-size: 0.75em; color: #888; margin-top: 2px; }
+      details { margin: 10px 0; }
+      summary { cursor: pointer; font-weight: 600; color: #1a3a5c; }
+      .timing { background: #fff; padding: 12px; border: 1px solid #ddd;
+                 border-radius: 4px; font-size: 11px; overflow-x: auto;
+                 max-height: 400px; overflow-y: auto; }
+      footer { margin-top: 40px; padding-top: 10px; border-top: 1px solid #ddd;
+                color: #999; font-size: 0.8em; }
     </style>
     </head><body>
     <h1>FME Online Output Verification</h1>
-    <p>Overall status: <b style="color:red; font-size:1.2em;">FAIL (205 issues)</b></p>
+    <p class="status">205 issues in 8/9 components</p>
 
-    <div class="nav"><a href="#EAM" style="margin-right:12px;">EAM</a> <a href="#MPAS_O_Depth_Coarsening_native" style="margin-right:12px;">MPAS-O Depth Coarsening (native)</a> <a href="#MPAS_O_Depth_Coarsening_remapped" style="margin-right:12px;">MPAS-O Depth Coarsening (remapped)</a> <a href="#MPAS_O_Derived_Fields_native" style="margin-right:12px;">MPAS-O Derived Fields (native)</a> <a href="#MPAS_O_Derived_Fields_remapped" style="margin-right:12px;">MPAS-O Derived Fields (remapped)</a> <a href="#MPAS_O_Vertical_Reduce_native" style="margin-right:12px;">MPAS-O Vertical Reduce (native)</a> <a href="#MPAS_O_Vertical_Reduce_remapped" style="margin-right:12px;">MPAS-O Vertical Reduce (remapped)</a> <a href="#MPAS_SI_Derived_Fields_native" style="margin-right:12px;">MPAS-SI Derived Fields (native)</a> <a href="#MPAS_SI_Derived_Fields_remapped" style="margin-right:12px;">MPAS-SI Derived Fields (remapped)</a> </div>
+    <nav><a href="#Summary">Summary</a>
+<a href="#MPAS_O_Depth_Coarsening">MPAS-O Depth Coarsening</a>
+<a href="#MPAS_O_Derived_Fields">MPAS-O Derived Fields</a>
+<a href="#MPAS_O_Vertical_Reduce">MPAS-O Vertical Reduce</a>
+<a href="#MPAS_SI_Derived_Fields">MPAS-SI Derived Fields</a>
+<a href="#Timing">Timing</a>
+</nav>
 
-    <h2>Issues by Component</h2>
-    <table><tr><th>Component</th><th>Status / Issue</th></tr>
-    <tr><td>EAM</td><td style='color:red'>tape3/T_1: min=37.79 below 150</td></tr>
-<tr><td>EAM</td><td style='color:red'>tape3/T_2: min=43.99 below 150</td></tr>
-<tr><td>EAM</td><td style='color:red'>tape3/T_3: min=44.03 below 150</td></tr>
-<tr><td>EAM</td><td style='color:red'>tape3/T_4: min=57.11 below 150</td></tr>
-<tr><td>EAM</td><td style='color:red'>tape3/T_5: min=45.52 below 150</td></tr>
-<tr><td>EAM</td><td style='color:red'>tape3/T_6: min=110.4 below 150</td></tr>
-<tr><td>EAM</td><td style='color:red'>tape3/T_7: min=39.23 below 150</td></tr>
-<tr><td>EAM</td><td style='color:red'>tape3/T_8: min=0.000184 below 150</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td style='color:red'>temperatureCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td style='color:red'>salinityCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td style='color:red'>salinityCoarsened: max=49.99 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td style='color:red'>velocityZonalCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td style='color:red'>velocityMeridionalCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td style='color:red'>layerThicknessCoarsened: 465044 depth layers, expected 19</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_0: min=-8.948e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_0: max=9.883e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_1: min=-8.945e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_1: max=6.593e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_2: min=-7.971e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_2: max=9.55e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_3: min=-9.849e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_3: max=9.762e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_4: min=-7.954e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_4: max=7.662e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_5: min=-9.408e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_5: max=9.33e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_6: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_6: max=9.711e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_7: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_7: max=9.43e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_8: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_8: max=9.511e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_9: min=-9.974e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_9: max=9.515e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_10: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_10: max=9.57e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_11: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_11: max=8.193e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_12: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_12: max=9.452e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_13: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_13: max=9.177e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_14: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_14: max=9.445e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_15: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_15: max=8.301e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_16: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_16: max=8.642e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_17: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_17: max=8.586e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_18: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/temperatureCoarsened_18: max=7.917e+14 above 40</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_0: min=-9.181e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_0: max=9.799e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_1: min=-8.188e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_1: max=9.302e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_2: min=-9.684e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_2: max=7.619e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_3: min=-8.837e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_3: max=8.978e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_4: min=-9.866e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_4: max=9.733e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_5: min=-9.583e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_5: max=9.288e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_6: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_6: max=8.138e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_7: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_7: max=9.859e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_8: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_8: max=6.689e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_9: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_9: max=9.293e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_10: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_10: max=9.863e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_11: min=-9.824e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_11: max=8.246e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_12: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_12: max=7.474e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_13: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_13: max=9.733e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_14: min=-9.804e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_14: max=5.721e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_15: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_15: max=8.685e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_16: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_16: max=8.278e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_17: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_17: max=8.711e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_18: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/salinityCoarsened_18: max=6.432e+14 above 42</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_0: min=-9.698e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_0: max=7.117e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_1: min=-9.287e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_1: max=9.594e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_2: min=-9.259e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_2: max=7.524e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_3: min=-9.645e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_3: max=9.97e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_4: min=-7.215e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_4: max=9.3e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_5: min=-8.266e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_5: max=8.838e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_6: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_6: max=9.928e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_7: min=-9.786e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_7: max=9.842e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_8: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_8: max=9.42e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_9: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_9: max=7.333e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_10: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_10: max=7.916e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_11: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_11: max=6.461e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_12: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_12: max=9.546e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_13: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_13: max=9.631e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_14: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_14: max=9.538e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_15: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_15: max=8.947e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_16: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_16: max=9.293e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_17: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_17: max=8.188e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_18: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityZonalCoarsened_18: max=8.689e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_0: min=-8.668e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_0: max=5.968e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_1: min=-9.701e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_1: max=8.396e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_2: min=-7.663e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_2: max=9.931e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_3: min=-9.964e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_3: max=9.392e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_4: min=-9.163e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_4: max=8.747e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_5: min=-9.145e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_5: max=8.793e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_6: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_6: max=8.5e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_7: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_7: max=8.705e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_8: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_8: max=9.088e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_9: min=-9.775e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_9: max=9.207e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_10: min=-9.954e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_10: max=7.154e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_11: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_11: max=8.545e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_12: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_12: max=9.862e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_13: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_13: max=9.165e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_14: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_14: max=9.55e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_15: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_15: max=9.8e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_16: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_16: max=9.654e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_17: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_17: max=9.495e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_18: min=-9.767e+14 below -5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/velocityMeridionalCoarsened_18: max=9.414e+14 above 5</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_0: min=-2.487e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_1: min=-2.487e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_2: min=-2.487e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_3: min=-8.837e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_4: min=-4.559e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_5: min=-4.559e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_6: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_7: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_8: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_9: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_10: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_11: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_12: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_13: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_14: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_15: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_16: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_17: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (remapped)</td><td style='color:red'>remapped/layerThicknessCoarsened_18: min=-9.767e+14 below 0</td></tr>
-<tr><td>MPAS-O Derived Fields (native)</td><td style='color:red'>surfaceHeatFluxTotal: min=-1784 below -1000</td></tr>
-<tr><td>MPAS-O Derived Fields (native)</td><td style='color:red'>surfaceHeatFluxTotal: max=1454 above 1000</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td style='color:red'>remapped/sst: min=-5.989e+14 below -5</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td style='color:red'>remapped/sst: max=9.266e+14 above 40</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td style='color:red'>remapped/sss: min=-8.99e+14 below 0</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td style='color:red'>remapped/sss: max=9.95e+14 above 42</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td style='color:red'>remapped/surfaceHeatFluxTotal: min=-8.913e+14 below -1000</td></tr>
-<tr><td>MPAS-O Derived Fields (remapped)</td><td style='color:red'>remapped/surfaceHeatFluxTotal: max=6.578e+14 above 1000</td></tr>
-<tr><td>MPAS-O Vertical Reduce (native)</td><td style='color:green'>PASS</td></tr>
-<tr><td>MPAS-O Vertical Reduce (remapped)</td><td style='color:red'>remapped/freshwaterContent: min=-7.447e+14 below -1000</td></tr>
-<tr><td>MPAS-O Vertical Reduce (remapped)</td><td style='color:red'>remapped/freshwaterContent: max=9.557e+14 above 1000</td></tr>
-<tr><td>MPAS-O Vertical Reduce (remapped)</td><td style='color:red'>remapped/kineticEnergy: min=-9.782e+14 below 0</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td style='color:red'>snowVolumeTotal: min=-3.434e-30 below 0</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td style='color:red'>surfaceTemperatureMean: min=-41.44 below 180</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td style='color:red'>remapped/iceAreaTotal: min=-8.176e+14 below 0</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td style='color:red'>remapped/iceAreaTotal: max=9.995e+14 above 1</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td style='color:red'>remapped/iceVolumeTotal: min=-7.096e+14 below 0</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td style='color:red'>remapped/snowVolumeTotal: min=-8.047e+14 below 0</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td style='color:red'>remapped/iceThicknessMean: min=-7.096e+14 below 0</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td style='color:red'>remapped/surfaceTemperatureMean: min=-9.883e+14 below 180</td></tr>
-<tr><td>MPAS-SI Derived Fields (remapped)</td><td style='color:red'>remapped/surfaceTemperatureMean: max=7.393e+14 above 320</td></tr>
+    <h2 id="Summary">Component Summary</h2>
+    <table>
+    <tr><th>Component</th><th>Status</th><th>Issues</th></tr>
+    <tr><td>EAM</td><td class="fail">FAIL</td><td>8</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td class="fail">FAIL</td><td>6</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td class="fail">FAIL</td><td>171</td></tr>
+<tr><td>MPAS-O Derived Fields (native)</td><td class="fail">FAIL</td><td>2</td></tr>
+<tr><td>MPAS-O Derived Fields (remapped)</td><td class="fail">FAIL</td><td>6</td></tr>
+<tr><td>MPAS-O Vertical Reduce (native)</td><td class="pass">PASS</td><td>0</td></tr>
+<tr><td>MPAS-O Vertical Reduce (remapped)</td><td class="fail">FAIL</td><td>3</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td class="fail">FAIL</td><td>2</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td class="fail">FAIL</td><td>7</td></tr>
 
     </table>
 
+    <details><summary>Show all 205 issues</summary><table><tr><th>Component</th><th>Issue</th></tr><tr><td>EAM</td><td>tape3/T_1: min=37.79 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_2: min=43.99 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_3: min=44.03 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_4: min=57.11 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_5: min=45.52 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_6: min=110.4 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_7: min=39.23 below 150</td></tr>
+<tr><td>EAM</td><td>tape3/T_8: min=0.000184 below 150</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>temperatureCoarsened: 465044 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>salinityCoarsened: 465044 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>salinityCoarsened: max=49.99 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityZonalCoarsened: 465044 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityMeridionalCoarsened: 465044 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>layerThicknessCoarsened: 465044 depth layers, expected 19</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_0: min=-8.948e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_0: max=9.883e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_1: min=-8.945e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_1: max=6.593e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_2: min=-7.971e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_2: max=9.55e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_3: min=-9.849e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_3: max=9.762e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_4: min=-7.954e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_4: max=7.662e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_5: min=-9.408e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_5: max=9.33e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_6: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_6: max=9.711e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_7: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_7: max=9.43e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_8: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_8: max=9.511e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_9: min=-9.974e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_9: max=9.515e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_10: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_10: max=9.57e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_11: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_11: max=8.193e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_12: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_12: max=9.452e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_13: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_13: max=9.177e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_14: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_14: max=9.445e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_15: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_15: max=8.301e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_16: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_16: max=8.642e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_17: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_17: max=8.586e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_18: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_18: max=7.917e+14 above 40</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_0: min=-9.181e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_0: max=9.799e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_1: min=-8.188e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_1: max=9.302e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_2: min=-9.684e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_2: max=7.619e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_3: min=-8.837e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_3: max=8.978e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_4: min=-9.866e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_4: max=9.733e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_5: min=-9.583e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_5: max=9.288e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_6: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_6: max=8.138e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_7: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_7: max=9.859e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_8: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_8: max=6.689e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_9: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_9: max=9.293e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_10: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_10: max=9.863e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_11: min=-9.824e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_11: max=8.246e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_12: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_12: max=7.474e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_13: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_13: max=9.733e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_14: min=-9.804e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_14: max=5.721e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_15: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_15: max=8.685e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_16: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_16: max=8.278e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_17: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_17: max=8.711e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_18: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/salinityCoarsened_18: max=6.432e+14 above 42</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_0: min=-9.698e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_0: max=7.117e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_1: min=-9.287e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_1: max=9.594e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_2: min=-9.259e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_2: max=7.524e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_3: min=-9.645e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_3: max=9.97e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_4: min=-7.215e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_4: max=9.3e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_5: min=-8.266e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_5: max=8.838e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_6: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_6: max=9.928e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_7: min=-9.786e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_7: max=9.842e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_8: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_8: max=9.42e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_9: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_9: max=7.333e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_10: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_10: max=7.916e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_11: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_11: max=6.461e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_12: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_12: max=9.546e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_13: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_13: max=9.631e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_14: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_14: max=9.538e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_15: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_15: max=8.947e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_16: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_16: max=9.293e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_17: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_17: max=8.188e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_18: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityZonalCoarsened_18: max=8.689e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_0: min=-8.668e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_0: max=5.968e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_1: min=-9.701e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_1: max=8.396e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_2: min=-7.663e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_2: max=9.931e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_3: min=-9.964e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_3: max=9.392e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_4: min=-9.163e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_4: max=8.747e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_5: min=-9.145e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_5: max=8.793e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_6: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_6: max=8.5e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_7: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_7: max=8.705e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_8: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_8: max=9.088e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_9: min=-9.775e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_9: max=9.207e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_10: min=-9.954e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_10: max=7.154e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_11: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_11: max=8.545e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_12: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_12: max=9.862e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_13: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_13: max=9.165e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_14: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_14: max=9.55e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_15: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_15: max=9.8e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_16: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_16: max=9.654e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_17: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_17: max=9.495e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_18: min=-9.767e+14 below -5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/velocityMeridionalCoarsened_18: max=9.414e+14 above 5</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_0: min=-2.487e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_1: min=-2.487e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_2: min=-2.487e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_3: min=-8.837e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_4: min=-4.559e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_5: min=-4.559e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_6: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_7: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_8: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_9: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_10: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_11: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_12: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_13: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_14: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_15: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_16: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_17: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_18: min=-9.767e+14 below 0</td></tr>
+<tr><td>MPAS-O Derived Fields (native)</td><td>surfaceHeatFluxTotal: min=-1784 below -1000</td></tr>
+<tr><td>MPAS-O Derived Fields (native)</td><td>surfaceHeatFluxTotal: max=1454 above 1000</td></tr>
+<tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/sst: min=-5.989e+14 below -5</td></tr>
+<tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/sst: max=9.266e+14 above 40</td></tr>
+<tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/sss: min=-8.99e+14 below 0</td></tr>
+<tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/sss: max=9.95e+14 above 42</td></tr>
+<tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/surfaceHeatFluxTotal: min=-8.913e+14 below -1000</td></tr>
+<tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/surfaceHeatFluxTotal: max=6.578e+14 above 1000</td></tr>
+<tr><td>MPAS-O Vertical Reduce (remapped)</td><td>remapped/freshwaterContent: min=-7.447e+14 below -1000</td></tr>
+<tr><td>MPAS-O Vertical Reduce (remapped)</td><td>remapped/freshwaterContent: max=9.557e+14 above 1000</td></tr>
+<tr><td>MPAS-O Vertical Reduce (remapped)</td><td>remapped/kineticEnergy: min=-9.782e+14 below 0</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>snowVolumeTotal: min=-3.434e-30 below 0</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>surfaceTemperatureMean: min=-41.44 below 180</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceAreaTotal: min=-8.176e+14 below 0</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceAreaTotal: max=9.995e+14 above 1</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceVolumeTotal: min=-7.096e+14 below 0</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/snowVolumeTotal: min=-8.047e+14 below 0</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceThicknessMean: min=-7.096e+14 below 0</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/surfaceTemperatureMean: min=-9.883e+14 below 180</td></tr>
+<tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/surfaceTemperatureMean: max=7.393e+14 above 320</td></tr>
+</table></details>
+
     <h2>Diagnostic Figures</h2>
-    <h3>MPAS-O Depth Coarsening (remapped)</h3>
-<div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_depth_temperatureCoarsened_0_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_depth_temperatureCoarsened_0_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_depth_temperatureCoarsened_0_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_depth_salinityCoarsened_0_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_depth_salinityCoarsened_0_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_depth_salinityCoarsened_0_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_depth_profile_temperatureCoarsened_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_depth_profile_temperatureCoarsened_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_depth_profile_temperatureCoarsened_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_depth_profile_salinityCoarsened_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_depth_profile_salinityCoarsened_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_depth_profile_salinityCoarsened_remapped.png</small></div>
+    <h3 id="MPAS_O_Depth_Coarsening">MPAS-O Depth Coarsening</h3>
+<div class="comparison">
+<div class="col"><h4>Remapped (lat-lon)</h4>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_depth_temperatureCoarsened_0_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_depth_temperatureCoarsened_0_remapped.png"/></a><span>mpaso_depth_temperatureCoarsened_0_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_depth_salinityCoarsened_0_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_depth_salinityCoarsened_0_remapped.png"/></a><span>mpaso_depth_salinityCoarsened_0_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_depth_profile_temperatureCoarsened_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_depth_profile_temperatureCoarsened_remapped.png"/></a><span>mpaso_depth_profile_temperatureCoarsened_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_depth_profile_salinityCoarsened_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_depth_profile_salinityCoarsened_remapped.png"/></a><span>mpaso_depth_profile_salinityCoarsened_remapped.png</span></div>
 </div>
-<h3>MPAS-O Derived Fields (remapped)</h3>
-<div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_derived_sst_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_derived_sst_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_derived_sst_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_derived_sss_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_derived_sss_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_derived_sss_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_derived_surfaceHeatFluxTotal_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_derived_surfaceHeatFluxTotal_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_derived_surfaceHeatFluxTotal_remapped.png</small></div>
 </div>
-<h3>MPAS-O Vertical Reduce (remapped)</h3>
-<div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_vertreduce_oceanHeatContent_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_vertreduce_oceanHeatContent_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_vertreduce_oceanHeatContent_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_vertreduce_freshwaterContent_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_vertreduce_freshwaterContent_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_vertreduce_freshwaterContent_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpaso_remapped/mpaso_vertreduce_kineticEnergy_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_vertreduce_kineticEnergy_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpaso_vertreduce_kineticEnergy_remapped.png</small></div>
+<h3 id="MPAS_O_Derived_Fields">MPAS-O Derived Fields</h3>
+<div class="comparison">
+<div class="col"><h4>Remapped (lat-lon)</h4>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_derived_sst_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_derived_sst_remapped.png"/></a><span>mpaso_derived_sst_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_derived_sss_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_derived_sss_remapped.png"/></a><span>mpaso_derived_sss_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_derived_surfaceHeatFluxTotal_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_derived_surfaceHeatFluxTotal_remapped.png"/></a><span>mpaso_derived_surfaceHeatFluxTotal_remapped.png</span></div>
 </div>
-<h3>MPAS-SI Derived Fields (native)</h3>
-<div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpassi_native/mpassi_iceAreaTotal_native.png"><img src="fme_output/mpassi_native/mpassi_iceAreaTotal_native.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpassi_iceAreaTotal_native.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpassi_native/mpassi_iceVolumeTotal_native.png"><img src="fme_output/mpassi_native/mpassi_iceVolumeTotal_native.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpassi_iceVolumeTotal_native.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpassi_native/mpassi_surfaceTemperatureMean_native.png"><img src="fme_output/mpassi_native/mpassi_surfaceTemperatureMean_native.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpassi_surfaceTemperatureMean_native.png</small></div>
 </div>
-<h3>MPAS-SI Derived Fields (remapped)</h3>
-<div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpassi_remapped/mpassi_iceAreaTotal_remapped.png"><img src="fme_output/mpassi_remapped/mpassi_iceAreaTotal_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpassi_iceAreaTotal_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpassi_remapped/mpassi_iceVolumeTotal_remapped.png"><img src="fme_output/mpassi_remapped/mpassi_iceVolumeTotal_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpassi_iceVolumeTotal_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpassi_remapped/mpassi_surfaceTemperatureMean_remapped.png"><img src="fme_output/mpassi_remapped/mpassi_surfaceTemperatureMean_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpassi_surfaceTemperatureMean_remapped.png</small></div>
-<div style="display:inline-block;margin:6px;vertical-align:top;"><a href="fme_output/mpassi_remapped/mpassi_snowVolumeTotal_remapped.png"><img src="fme_output/mpassi_remapped/mpassi_snowVolumeTotal_remapped.png" width="420" style="border:1px solid #ccc;"/></a><br/><small>mpassi_snowVolumeTotal_remapped.png</small></div>
+<h3 id="MPAS_O_Vertical_Reduce">MPAS-O Vertical Reduce</h3>
+<div class="comparison">
+<div class="col"><h4>Remapped (lat-lon)</h4>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_vertreduce_oceanHeatContent_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_vertreduce_oceanHeatContent_remapped.png"/></a><span>mpaso_vertreduce_oceanHeatContent_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_vertreduce_freshwaterContent_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_vertreduce_freshwaterContent_remapped.png"/></a><span>mpaso_vertreduce_freshwaterContent_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpaso_remapped/mpaso_vertreduce_kineticEnergy_remapped.png"><img src="fme_output/mpaso_remapped/mpaso_vertreduce_kineticEnergy_remapped.png"/></a><span>mpaso_vertreduce_kineticEnergy_remapped.png</span></div>
+</div>
+</div>
+<h3 id="MPAS_SI_Derived_Fields">MPAS-SI Derived Fields</h3>
+<div class="comparison">
+<div class="col"><h4>Native Grid</h4>
+<div class="fig"><a href="fme_output/mpassi_native/mpassi_iceAreaTotal_native.png"><img src="fme_output/mpassi_native/mpassi_iceAreaTotal_native.png"/></a><span>mpassi_iceAreaTotal_native.png</span></div>
+<div class="fig"><a href="fme_output/mpassi_native/mpassi_iceVolumeTotal_native.png"><img src="fme_output/mpassi_native/mpassi_iceVolumeTotal_native.png"/></a><span>mpassi_iceVolumeTotal_native.png</span></div>
+<div class="fig"><a href="fme_output/mpassi_native/mpassi_surfaceTemperatureMean_native.png"><img src="fme_output/mpassi_native/mpassi_surfaceTemperatureMean_native.png"/></a><span>mpassi_surfaceTemperatureMean_native.png</span></div>
+</div>
+<div class="col"><h4>Remapped (lat-lon)</h4>
+<div class="fig"><a href="fme_output/mpassi_remapped/mpassi_iceAreaTotal_remapped.png"><img src="fme_output/mpassi_remapped/mpassi_iceAreaTotal_remapped.png"/></a><span>mpassi_iceAreaTotal_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpassi_remapped/mpassi_iceVolumeTotal_remapped.png"><img src="fme_output/mpassi_remapped/mpassi_iceVolumeTotal_remapped.png"/></a><span>mpassi_iceVolumeTotal_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpassi_remapped/mpassi_surfaceTemperatureMean_remapped.png"><img src="fme_output/mpassi_remapped/mpassi_surfaceTemperatureMean_remapped.png"/></a><span>mpassi_surfaceTemperatureMean_remapped.png</span></div>
+<div class="fig"><a href="fme_output/mpassi_remapped/mpassi_snowVolumeTotal_remapped.png"><img src="fme_output/mpassi_remapped/mpassi_snowVolumeTotal_remapped.png"/></a><span>mpassi_snowVolumeTotal_remapped.png</span></div>
+</div>
 </div>
 
 
 
-    <h2>Performance Timing Summary</h2>
-    <div style="background:#f8f8f8;padding:10px;border:1px solid #ddd;
-                font-family:monospace;font-size:12px;overflow-x:auto;">
-    <pre>***** GLOBAL STATISTICS (   512 MPI TASKS) *****</pre>
-<pre>name                                            on  processes  threads        count      walltotal   wallmax (proc   thrd  )   wallmin (proc   thrd  )</pre>
-<pre>"CPL:INIT"                                       -        512      512 5.120000e+02   4.014450e+04    78.450 (    65      0)    78.388 (   435      0)</pre>
-<pre>"CPL:cime_pre_init1"                             -        512      512 5.120000e+02   9.599407e+02     1.918 (    66      0)     1.856 (   422      0)</pre>
-<pre>"CPL:mpi_init"                                   -        512      512 5.120000e+02   7.494220e+02     1.507 (    65      0)     1.444 (   448      0)</pre>
-<pre>"CPL:ESMF_Initialize"                            -        512      512 5.120000e+02   7.810273e-01     0.003 (   384      0)     0.000 (   220      0)</pre>
-<pre>"CPL:cime_pre_init2"                             -        512      512 5.120000e+02   1.189519e+02     0.235 (   121      0)     0.229 (   119      0)</pre>
-<pre>"CPL:seq_infodata_init"                          -        512      512 5.120000e+02   1.757922e+01     0.072 (   385      0)     0.006 (   466      0)</pre>
-<pre>"CPL:seq_timemgr_clockInit"                      -        512      512 5.120000e+02   3.436988e+00     0.010 (   119      0)     0.003 (   166      0)</pre>
-<pre>"CPL:cime_init"                                  -        512      512 5.120000e+02   3.906478e+04    76.300 (   422      0)    76.297 (   136      0)</pre>
-<pre>"CPL:init_comps"                                 -        512      512 5.120000e+02   3.396478e+04    66.342 (   119      0)    66.327 (   511      0)</pre>
-<pre>"CPL:comp_init_pre_all"                          -        512      512 5.120000e+02   1.355533e-01     0.001 (   235      0)     0.000 (   299      0)</pre>
-<pre>"comp_init_cc_iac"                               -        512      512 5.120000e+02   2.317670e+00     0.007 (   296      0)     0.003 (   221      0)</pre>
-<pre>"z_i:comp_init"                                  -        512      512 5.120000e+02   6.310111e-01     0.002 (    15      0)     0.000 (   444      0)</pre>
-<pre>"CPL:comp_init_cc_atm"                           -        512      512 5.120000e+02   1.675844e+04    32.731 (   373      0)    32.731 (   120      0)</pre>
-<pre>"a_i:comp_init"                                  -        512      512 1.024000e+03   1.841311e+04    36.017 (   381      0)    35.856 (   392      0)</pre>
-<pre>"a_i:cam_init"                                   -        512      512 5.120000e+02   1.664018e+04    32.509 (   375      0)    32.481 (   136      0)</pre>
-<pre>"a_i:cam_initfiles_open"                         -        512      512 5.120000e+02   6.919132e+01     0.137 (   261      0)     0.134 (   259      0)</pre>
-<pre>"a_i:cam_initial"                                -        512      512 5.120000e+02   4.560263e+03     8.907 (    27      0)     8.906 (   302      0)</pre>
-<pre>"a_i:dyn_init1"                                  -        512      512 5.120000e+02   6.808494e+01     0.137 (   212      0)     0.126 (    67      0)</pre>
-<pre>"a_i:hycoef_init"                                -        512      512 5.120000e+02   1.325021e+01     0.029 (   386      0)     0.022 (   135      0)</pre>
-<pre>"a_i:prim_init1"                                 -        512      512 5.120000e+02   4.194104e+01     0.087 (   307      0)     0.076 (    69      0)</pre>
-<pre>"a_i:repro_sum_finalsum"                         -        512      512 4.505600e+04   1.563342e-02     0.000 (     0      0)     0.000 (   119      0)</pre>
-<pre>"a_i:compose_init"                               -        512      512 5.120000e+02   9.223984e+00     0.021 (   219      0)     0.015 (   491      0)</pre>
-<pre>"a_i:sl_init1"                                   -        512      512 5.120000e+02   2.353062e+00     0.009 (   226      0)     0.001 (   427      0)</pre>
-<pre>"a_i:phys_grid_init"                             -        512      512 5.120000e+02   1.315393e+01     0.033 (    69      0)     0.021 (   136      0)</pre>
-<pre>"a_i:initial_conds"                              -        512      512 5.120000e+02   4.441766e+03     8.689 (     0      0)     8.662 (   400      0)</pre>
-<pre>"a_i:PIO:initdecomp"                             -        512      512 3.072000e+03   2.378190e+01     0.048 (   109      0)     0.044 (   368      0)</pre>
-<pre>"a_i:PIO:PIOc_initdecomp"                        -        512      512 3.072000e+03   2.326313e+01     0.047 (   296      0)     0.044 (   275      0)</pre>
-<pre>"a_i:dyn_init2"                                  -        512      512 5.120000e+02   3.048950e+01     0.069 (   402      0)     0.050 (   128      0)</pre>
-<pre>"a_i:prim_init2"                                 -        512      512 5.120000e+02   2.738023e+01     0.064 (   388      0)     0.048 (   223      0)</pre>
-<pre>"a_i:phys_init"                                  -        512      512 5.120000e+02   1.195558e+04    23.356 (   489      0)    23.346 (     4      0)</pre>
-<pre>"a_i:rad_cnst_init"                              -        512      512 5.120000e+02   4.352914e+02     0.852 (    11      0)     0.848 (   488      0)</pre>
-<pre>"a_i:solar_data_init"                            -        512      512 5.120000e+02   2.876900e+01     0.056 (   112      0)     0.056 (   417      0)</pre>
-<pre>"a_i:chem_init"                                  -        512      512 5.120000e+02   7.907084e+03    15.446 (    64      0)    15.442 (    69      0)</pre>
-<pre>"a_i:prescribed_volcaero_init"                   -        512      512 5.120000e+02   1.901850e-04     0.000 (   450      0)     0.000 (   459      0)</pre>
-<pre>"a_i:init_ocean_data"                            -        512      512 5.120000e+02   2.827025e+01     0.057 (    37      0)     0.054 (   198      0)</pre>
-<pre>"a_i:radiation_init"                             -        512      512 5.120000e+02   1.896175e+02     0.386 (   393      0)     0.360 (   209      0)</pre>
-<pre>"a_i:tropopause_init"                            -        512      512 5.120000e+02   2.511151e+02     0.936 (    85      0)     0.022 (   500      0)</pre>
-<pre>"CPL:comp_init_cc_lnd"                           -        512      512 5.120000e+02   8.606784e+03    16.810 (   312      0)    16.810 (   450      0)</pre>
-    </div>
+    <h2 id="Timing">Performance Timing</h2>
+    <pre class="timing">***** GLOBAL STATISTICS (   512 MPI TASKS) *****
+name                                            on  processes  threads        count      walltotal   wallmax (proc   thrd  )   wallmin (proc   thrd  )
+"CPL:INIT"                                       -        512      512 5.120000e+02   4.014450e+04    78.450 (    65      0)    78.388 (   435      0)
+"CPL:cime_pre_init1"                             -        512      512 5.120000e+02   9.599407e+02     1.918 (    66      0)     1.856 (   422      0)
+"CPL:mpi_init"                                   -        512      512 5.120000e+02   7.494220e+02     1.507 (    65      0)     1.444 (   448      0)
+"CPL:ESMF_Initialize"                            -        512      512 5.120000e+02   7.810273e-01     0.003 (   384      0)     0.000 (   220      0)
+"CPL:cime_pre_init2"                             -        512      512 5.120000e+02   1.189519e+02     0.235 (   121      0)     0.229 (   119      0)
+"CPL:seq_infodata_init"                          -        512      512 5.120000e+02   1.757922e+01     0.072 (   385      0)     0.006 (   466      0)
+"CPL:seq_timemgr_clockInit"                      -        512      512 5.120000e+02   3.436988e+00     0.010 (   119      0)     0.003 (   166      0)
+"CPL:cime_init"                                  -        512      512 5.120000e+02   3.906478e+04    76.300 (   422      0)    76.297 (   136      0)
+"CPL:init_comps"                                 -        512      512 5.120000e+02   3.396478e+04    66.342 (   119      0)    66.327 (   511      0)
+"CPL:comp_init_pre_all"                          -        512      512 5.120000e+02   1.355533e-01     0.001 (   235      0)     0.000 (   299      0)
+"comp_init_cc_iac"                               -        512      512 5.120000e+02   2.317670e+00     0.007 (   296      0)     0.003 (   221      0)
+"z_i:comp_init"                                  -        512      512 5.120000e+02   6.310111e-01     0.002 (    15      0)     0.000 (   444      0)
+"CPL:comp_init_cc_atm"                           -        512      512 5.120000e+02   1.675844e+04    32.731 (   373      0)    32.731 (   120      0)
+"a_i:comp_init"                                  -        512      512 1.024000e+03   1.841311e+04    36.017 (   381      0)    35.856 (   392      0)
+"a_i:cam_init"                                   -        512      512 5.120000e+02   1.664018e+04    32.509 (   375      0)    32.481 (   136      0)
+"a_i:cam_initfiles_open"                         -        512      512 5.120000e+02   6.919132e+01     0.137 (   261      0)     0.134 (   259      0)
+"a_i:cam_initial"                                -        512      512 5.120000e+02   4.560263e+03     8.907 (    27      0)     8.906 (   302      0)
+"a_i:dyn_init1"                                  -        512      512 5.120000e+02   6.808494e+01     0.137 (   212      0)     0.126 (    67      0)
+"a_i:hycoef_init"                                -        512      512 5.120000e+02   1.325021e+01     0.029 (   386      0)     0.022 (   135      0)
+"a_i:prim_init1"                                 -        512      512 5.120000e+02   4.194104e+01     0.087 (   307      0)     0.076 (    69      0)
+"a_i:repro_sum_finalsum"                         -        512      512 4.505600e+04   1.563342e-02     0.000 (     0      0)     0.000 (   119      0)
+"a_i:compose_init"                               -        512      512 5.120000e+02   9.223984e+00     0.021 (   219      0)     0.015 (   491      0)
+"a_i:sl_init1"                                   -        512      512 5.120000e+02   2.353062e+00     0.009 (   226      0)     0.001 (   427      0)
+"a_i:phys_grid_init"                             -        512      512 5.120000e+02   1.315393e+01     0.033 (    69      0)     0.021 (   136      0)
+"a_i:initial_conds"                              -        512      512 5.120000e+02   4.441766e+03     8.689 (     0      0)     8.662 (   400      0)
+"a_i:PIO:initdecomp"                             -        512      512 3.072000e+03   2.378190e+01     0.048 (   109      0)     0.044 (   368      0)
+"a_i:PIO:PIOc_initdecomp"                        -        512      512 3.072000e+03   2.326313e+01     0.047 (   296      0)     0.044 (   275      0)
+"a_i:dyn_init2"                                  -        512      512 5.120000e+02   3.048950e+01     0.069 (   402      0)     0.050 (   128      0)</pre>
 
-    <hr/><p style="color:#888;font-size:11px;">Generated by verify_fme_output.py</p>
+    <footer>Generated by verify_fme_output.py &mdash; FME Online Output Processing for E3SM</footer>
     </body></html>

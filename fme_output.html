@@ -9,7 +9,7 @@
       header { background: #1a2744; color: #fff; padding: 20px 30px; }
       header h1 { margin: 0 0 6px 0; font-size: 1.6em; }
       header .status { font-size: 1.2em; font-weight: bold;
-                        color: #6fcf6f; }
+                        color: #ff8888; }
       h2 { color: #1a2744; margin-top: 35px; border-bottom: 2px solid #1a2744;
             padding-bottom: 6px; font-size: 1.3em; }
       h3 { color: #2c3e50; margin-top: 25px; }
@@ -80,7 +80,7 @@
     </head><body>
     <header>
       <h1>FME Online Output Verification</h1>
-      <span class="status">ALL PASS</span>
+      <span class="status">187 issues in 4/13 components</span>
     </header>
     <div class="container">
 
@@ -100,7 +100,7 @@
     <table>
     <tr><th>Component</th><th>Status</th><th>Issues</th></tr>
     <tr><td>EAM</td><td class="pass">PASS</td><td>0</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td class="pass">PASS</td><td>0</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td class="fail">FAIL</td><td>1</td></tr>
 <tr><td>MPAS-O Depth Coarsening (remapped)</td><td class="pass">PASS</td><td>0</td></tr>
 <tr><td>MPAS-O Derived Fields (native)</td><td class="pass">PASS</td><td>0</td></tr>
 <tr><td>MPAS-O Derived Fields (remapped)</td><td class="pass">PASS</td><td>0</td></tr>
@@ -108,10 +108,201 @@
 <tr><td>MPAS-O Vertical Reduce (remapped)</td><td class="pass">PASS</td><td>0</td></tr>
 <tr><td>MPAS-SI Derived Fields (native)</td><td class="pass">PASS</td><td>0</td></tr>
 <tr><td>MPAS-SI Derived Fields (remapped)</td><td class="pass">PASS</td><td>0</td></tr>
+<tr><td>Offline/derived</td><td class="fail">FAIL</td><td>9</td></tr>
+<tr><td>Offline/vcoarsen</td><td class="fail">FAIL</td><td>168</td></tr>
+<tr><td>Offline/column_integration</td><td class="fail">FAIL</td><td>9</td></tr>
+<tr><td>Offline/remap</td><td class="pass">PASS</td><td>0</td></tr>
 
     </table>
 
-
+    <details><summary>Show all 187 issues</summary><table><tr><th>Component</th><th>Issue</th></tr><tr><td>MPAS-O Depth Coarsening (native)</td><td>salinityCoarsened: max=56.19 above 50</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=0, max|diff|=3.24e-05</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=1, max|diff|=2.08e-05</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=2, max|diff|=1.74e-05</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=3, max|diff|=2.71e-05</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=4, max|diff|=7.82e-05</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=5, max|diff|=1.53e-05</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=6, max|diff|=3.89e-05</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=7, max|diff|=1.70e-05</td></tr>
+<tr><td>Offline/derived</td><td>verify_derived: TOTAL_WATER mismatch at t=8, max|diff|=1.60e-05</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=0 max|diff|=1.19e-01 max|rel|=5.32e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=0 max|diff|=1.46e-01 max|rel|=7.57e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=0 max|diff|=1.93e-01 max|rel|=8.69e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=0 max|diff|=1.63e-01 max|rel|=6.55e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=0 max|diff|=1.78e-01 max|rel|=6.85e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=0 max|diff|=6.11e-01 max|rel|=2.42e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=0 max|diff|=9.78e-01 max|rel|=3.40e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=0 max|diff|=1.29e+00 max|rel|=4.34e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=1 max|diff|=1.19e-01 max|rel|=5.37e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=1 max|diff|=1.51e-01 max|rel|=7.86e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=1 max|diff|=2.05e-01 max|rel|=9.20e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=1 max|diff|=1.75e-01 max|rel|=6.95e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=1 max|diff|=1.82e-01 max|rel|=6.98e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=1 max|diff|=4.96e-01 max|rel|=1.89e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=1 max|diff|=3.56e-01 max|rel|=1.28e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=1 max|diff|=1.01e+00 max|rel|=3.53e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=2 max|diff|=1.10e-01 max|rel|=4.97e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=2 max|diff|=1.56e-01 max|rel|=8.13e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=2 max|diff|=1.95e-01 max|rel|=8.85e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=2 max|diff|=1.87e-01 max|rel|=7.38e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=2 max|diff|=1.70e-01 max|rel|=6.26e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=2 max|diff|=1.84e-01 max|rel|=6.54e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=2 max|diff|=7.56e-01 max|rel|=2.95e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=2 max|diff|=9.12e-01 max|rel|=3.03e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=3 max|diff|=1.44e-01 max|rel|=6.30e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=3 max|diff|=1.18e-01 max|rel|=6.11e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=3 max|diff|=2.38e-01 max|rel|=1.08e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=3 max|diff|=2.17e-01 max|rel|=8.89e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=3 max|diff|=1.84e-01 max|rel|=6.86e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=3 max|diff|=2.30e-01 max|rel|=8.79e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=3 max|diff|=3.92e-01 max|rel|=1.46e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=3 max|diff|=1.01e+00 max|rel|=3.35e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=4 max|diff|=1.16e-01 max|rel|=5.21e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=4 max|diff|=1.32e-01 max|rel|=6.87e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=4 max|diff|=2.08e-01 max|rel|=9.37e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=4 max|diff|=1.82e-01 max|rel|=7.24e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=4 max|diff|=1.69e-01 max|rel|=6.68e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=4 max|diff|=2.37e-01 max|rel|=9.18e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=4 max|diff|=4.05e-01 max|rel|=1.43e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=4 max|diff|=6.93e-01 max|rel|=2.49e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=5 max|diff|=1.14e-01 max|rel|=5.12e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=5 max|diff|=1.44e-01 max|rel|=7.49e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=5 max|diff|=2.21e-01 max|rel|=9.91e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=5 max|diff|=1.79e-01 max|rel|=7.13e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=5 max|diff|=1.99e-01 max|rel|=7.35e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=5 max|diff|=2.98e-01 max|rel|=1.13e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=5 max|diff|=3.45e-01 max|rel|=1.26e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=5 max|diff|=7.64e-01 max|rel|=2.76e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=6 max|diff|=1.11e-01 max|rel|=4.97e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=6 max|diff|=1.30e-01 max|rel|=6.74e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=6 max|diff|=2.25e-01 max|rel|=1.02e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=6 max|diff|=1.85e-01 max|rel|=7.35e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=6 max|diff|=2.13e-01 max|rel|=7.91e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=6 max|diff|=1.90e-01 max|rel|=6.78e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=6 max|diff|=2.89e-01 max|rel|=1.04e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=6 max|diff|=1.32e+00 max|rel|=4.37e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=7 max|diff|=1.10e-01 max|rel|=4.95e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=7 max|diff|=1.13e-01 max|rel|=5.85e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=7 max|diff|=2.92e-01 max|rel|=1.32e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=7 max|diff|=1.80e-01 max|rel|=7.21e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=7 max|diff|=1.90e-01 max|rel|=7.23e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=7 max|diff|=2.70e-01 max|rel|=9.49e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=7 max|diff|=6.98e-01 max|rel|=2.74e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=7 max|diff|=7.58e-01 max|rel|=2.54e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_1 t=8 max|diff|=1.12e-01 max|rel|=5.03e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_2 t=8 max|diff|=1.22e-01 max|rel|=6.34e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_3 t=8 max|diff|=2.07e-01 max|rel|=9.34e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_4 t=8 max|diff|=1.69e-01 max|rel|=6.78e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_5 t=8 max|diff|=2.13e-01 max|rel|=8.36e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_6 t=8 max|diff|=1.84e-01 max|rel|=6.69e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_7 t=8 max|diff|=5.19e-01 max|rel|=1.90e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: T_8 t=8 max|diff|=7.90e-01 max|rel|=2.82e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=0 max|diff|=7.98e-08 max|rel|=3.82e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=0 max|diff|=2.04e-06 max|rel|=4.89e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=0 max|diff|=1.54e-06 max|rel|=1.85e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=0 max|diff|=6.75e-08 max|rel|=4.18e-05</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_6 t=0 max|diff|=1.66e-09 max|rel|=1.60e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=0 max|diff|=3.13e-09 max|rel|=4.27e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_8 t=0 max|diff|=3.99e-09 max|rel|=1.66e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=1 max|diff|=4.50e-07 max|rel|=1.89e-01</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=1 max|diff|=5.59e-07 max|rel|=1.44e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=1 max|diff|=4.17e-07 max|rel|=5.06e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=1 max|diff|=3.72e-07 max|rel|=9.97e-05</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=1 max|diff|=2.99e-09 max|rel|=2.17e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_8 t=1 max|diff|=1.47e-08 max|rel|=1.53e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=2 max|diff|=1.14e-07 max|rel|=5.42e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=2 max|diff|=4.42e-07 max|rel|=1.23e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=2 max|diff|=9.44e-08 max|rel|=2.24e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=2 max|diff|=3.73e-07 max|rel|=1.12e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_6 t=2 max|diff|=1.60e-09 max|rel|=1.41e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=2 max|diff|=2.98e-09 max|rel|=2.78e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=3 max|diff|=4.13e-07 max|rel|=1.76e-01</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=3 max|diff|=2.90e-07 max|rel|=3.52e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=3 max|diff|=1.60e-07 max|rel|=1.35e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=3 max|diff|=1.11e-07 max|rel|=7.71e-05</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_6 t=3 max|diff|=1.83e-09 max|rel|=1.75e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=3 max|diff|=3.05e-09 max|rel|=1.76e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=4 max|diff|=9.20e-09 max|rel|=4.08e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=4 max|diff|=9.15e-06 max|rel|=4.33e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=4 max|diff|=6.91e-06 max|rel|=2.52e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=4 max|diff|=4.13e-07 max|rel|=9.31e-05</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_6 t=4 max|diff|=1.68e-09 max|rel|=2.34e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=4 max|diff|=3.05e-09 max|rel|=1.41e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_8 t=4 max|diff|=1.75e-08 max|rel|=1.41e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=5 max|diff|=1.45e-07 max|rel|=4.87e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=5 max|diff|=1.09e-07 max|rel|=1.03e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=5 max|diff|=1.32e-07 max|rel|=4.16e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=5 max|diff|=1.51e-07 max|rel|=1.22e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_6 t=5 max|diff|=1.58e-09 max|rel|=1.51e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=5 max|diff|=2.96e-09 max|rel|=3.09e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=6 max|diff|=2.04e-07 max|rel|=9.18e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=6 max|diff|=1.16e-06 max|rel|=1.09e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=6 max|diff|=8.74e-07 max|rel|=5.32e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=6 max|diff|=9.66e-08 max|rel|=1.10e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_6 t=6 max|diff|=1.67e-09 max|rel|=1.43e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=6 max|diff|=3.00e-09 max|rel|=4.04e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=7 max|diff|=5.66e-07 max|rel|=2.40e-01</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=7 max|diff|=3.93e-07 max|rel|=2.01e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=7 max|diff|=3.96e-07 max|rel|=4.09e-04</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=7 max|diff|=4.36e-07 max|rel|=8.59e-05</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_6 t=7 max|diff|=1.64e-09 max|rel|=1.06e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=7 max|diff|=3.10e-09 max|rel|=1.09e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_8 t=7 max|diff|=7.67e-09 max|rel|=1.12e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_2 t=8 max|diff|=4.66e-08 max|rel|=2.49e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_3 t=8 max|diff|=1.87e-06 max|rel|=5.64e-02</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_4 t=8 max|diff|=1.41e-06 max|rel|=1.99e-03</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_5 t=8 max|diff|=2.75e-07 max|rel|=9.37e-05</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_6 t=8 max|diff|=1.65e-09 max|rel|=1.06e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: Q_7 t=8 max|diff|=3.19e-09 max|rel|=1.38e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=0 max|diff|=3.60e-10 max|rel|=1.76e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=0 max|diff|=8.50e-10 max|rel|=1.46e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_6 t=0 max|diff|=1.66e-09 max|rel|=1.60e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=0 max|diff|=3.13e-09 max|rel|=4.33e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_8 t=0 max|diff|=3.68e-09 max|rel|=1.63e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=1 max|diff|=4.08e-10 max|rel|=1.42e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=1 max|diff|=9.72e-10 max|rel|=1.27e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=1 max|diff|=3.10e-09 max|rel|=2.20e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_8 t=1 max|diff|=1.47e-08 max|rel|=1.51e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=2 max|diff|=3.48e-10 max|rel|=1.03e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=2 max|diff|=9.32e-10 max|rel|=1.74e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_6 t=2 max|diff|=1.71e-09 max|rel|=1.53e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=2 max|diff|=2.79e-09 max|rel|=2.79e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=3 max|diff|=3.61e-10 max|rel|=2.61e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=3 max|diff|=9.92e-10 max|rel|=1.87e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_6 t=3 max|diff|=1.93e-09 max|rel|=1.81e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=3 max|diff|=2.91e-09 max|rel|=1.76e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=4 max|diff|=3.34e-10 max|rel|=1.76e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=4 max|diff|=1.16e-09 max|rel|=2.24e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_6 t=4 max|diff|=1.61e-09 max|rel|=2.34e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=4 max|diff|=3.05e-09 max|rel|=1.44e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_8 t=4 max|diff|=1.69e-08 max|rel|=1.35e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=5 max|diff|=3.67e-10 max|rel|=1.31e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=5 max|diff|=1.05e-09 max|rel|=2.16e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_6 t=5 max|diff|=1.67e-09 max|rel|=1.51e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=5 max|diff|=3.21e-09 max|rel|=3.09e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=6 max|diff|=3.58e-10 max|rel|=1.78e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=6 max|diff|=9.55e-10 max|rel|=2.52e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_6 t=6 max|diff|=1.74e-09 max|rel|=1.42e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=6 max|diff|=3.26e-09 max|rel|=4.07e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=7 max|diff|=2.98e-10 max|rel|=1.34e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=7 max|diff|=8.99e-10 max|rel|=3.66e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_6 t=7 max|diff|=1.60e-09 max|rel|=1.06e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=7 max|diff|=3.13e-09 max|rel|=1.14e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_8 t=7 max|diff|=7.67e-09 max|rel|=1.20e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_4 t=8 max|diff|=3.69e-10 max|rel|=1.43e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_5 t=8 max|diff|=9.05e-10 max|rel|=1.83e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_6 t=8 max|diff|=1.60e-09 max|rel|=1.06e-06</td></tr>
+<tr><td>Offline/vcoarsen</td><td>verify_vcoarsen: TOTAL_WATER_7 t=8 max|diff|=3.31e-09 max|rel|=1.44e-06</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=0 max|diff|=6.66e+02 max|rel|=2.97e-04</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=1 max|diff|=5.93e+02 max|rel|=2.73e-04</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=2 max|diff|=5.58e+02 max|rel|=2.35e-04</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=3 max|diff|=7.17e+02 max|rel|=3.14e-04</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=4 max|diff|=5.28e+02 max|rel|=2.43e-04</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=5 max|diff|=5.38e+02 max|rel|=2.50e-04</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=6 max|diff|=5.45e+02 max|rel|=2.29e-04</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=7 max|diff|=5.07e+02 max|rel|=2.81e-04</td></tr>
+<tr><td>Offline/column_integration</td><td>verify_colint: T_INT t=8 max|diff|=5.32e+02 max|rel|=2.61e-04</td></tr>
+</table></details>
 
     <h2 id="File_Inventory">File Inventory</h2>
     <table>
@@ -223,11 +414,11 @@
 <tr><td>EAM</td><td>tape3/TOTAL_WATER_6</td><td>583,200</td><td>582,234</td><td>966</td><td class="pass">0.2%</td></tr>
 <tr><td>EAM</td><td>tape3/TOTAL_WATER_7</td><td>583,200</td><td>544,792</td><td>38,408</td><td class="pass">6.6%</td></tr>
 <tr><td>EAM</td><td>tape3/TOTAL_WATER_8</td><td>583,200</td><td>514,663</td><td>68,537</td><td class="pass">11.8%</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>temperatureCoarsened</td><td>23,252,200</td><td>15,556,768</td><td>7,695,432</td><td class="pass">33.1%</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>salinityCoarsened</td><td>23,252,200</td><td>15,556,768</td><td>7,695,432</td><td class="pass">33.1%</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityZonalCoarsened</td><td>23,252,200</td><td>15,556,768</td><td>7,695,432</td><td class="pass">33.1%</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityMeridionalCoarsened</td><td>23,252,200</td><td>15,556,768</td><td>7,695,432</td><td class="pass">33.1%</td></tr>
-<tr><td>MPAS-O Depth Coarsening (native)</td><td>layerThicknessCoarsened</td><td>23,252,200</td><td>15,556,768</td><td>7,695,432</td><td class="pass">33.1%</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>temperatureCoarsened</td><td>34,878,300</td><td>23,334,682</td><td>11,543,618</td><td class="pass">33.1%</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>salinityCoarsened</td><td>34,878,300</td><td>23,334,682</td><td>11,543,618</td><td class="pass">33.1%</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityZonalCoarsened</td><td>34,878,300</td><td>23,334,682</td><td>11,543,618</td><td class="pass">33.1%</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>velocityMeridionalCoarsened</td><td>34,878,300</td><td>23,334,682</td><td>11,543,618</td><td class="pass">33.1%</td></tr>
+<tr><td>MPAS-O Depth Coarsening (native)</td><td>layerThicknessCoarsened</td><td>34,878,300</td><td>23,334,682</td><td>11,543,618</td><td class="pass">33.1%</td></tr>
 <tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_0</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
 <tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_1</td><td>129,600</td><td>89,199</td><td>40,401</td><td class="pass">31.2%</td></tr>
 <tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/temperatureCoarsened_2</td><td>129,600</td><td>88,388</td><td>41,212</td><td class="pass">31.8%</td></tr>
@@ -323,25 +514,25 @@
 <tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_16</td><td>129,600</td><td>68,591</td><td>61,009</td><td class="pass">47.1%</td></tr>
 <tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_17</td><td>129,600</td><td>62,472</td><td>67,128</td><td class="fail">51.8%</td></tr>
 <tr><td>MPAS-O Depth Coarsening (remapped)</td><td>remapped/layerThicknessCoarsened_18</td><td>129,600</td><td>31,199</td><td>98,401</td><td class="fail">75.9%</td></tr>
-<tr><td>MPAS-O Derived Fields (native)</td><td>sst</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-O Derived Fields (native)</td><td>sss</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-O Derived Fields (native)</td><td>surfaceHeatFluxTotal</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-O Derived Fields (native)</td><td>sst</td><td>1,395,132</td><td>1,395,132</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-O Derived Fields (native)</td><td>sss</td><td>1,395,132</td><td>1,395,132</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-O Derived Fields (native)</td><td>surfaceHeatFluxTotal</td><td>1,395,132</td><td>1,395,132</td><td>0</td><td class="pass">0.0%</td></tr>
 <tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/sst</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
 <tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/sss</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
 <tr><td>MPAS-O Derived Fields (remapped)</td><td>remapped/surfaceHeatFluxTotal</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
-<tr><td>MPAS-O Vertical Reduce (native)</td><td>oceanHeatContent</td><td>930,088</td><td>137,609</td><td>792,479</td><td class="fail">85.2%</td></tr>
-<tr><td>MPAS-O Vertical Reduce (native)</td><td>freshwaterContent</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-O Vertical Reduce (native)</td><td>kineticEnergy</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-O Vertical Reduce (native)</td><td>oceanHeatContent</td><td>1,395,132</td><td>206,358</td><td>1,188,774</td><td class="fail">85.2%</td></tr>
+<tr><td>MPAS-O Vertical Reduce (native)</td><td>freshwaterContent</td><td>1,395,132</td><td>1,395,132</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-O Vertical Reduce (native)</td><td>kineticEnergy</td><td>1,395,132</td><td>1,395,132</td><td>0</td><td class="pass">0.0%</td></tr>
 <tr><td>MPAS-O Vertical Reduce (remapped)</td><td>remapped/oceanHeatContent</td><td>129,600</td><td>27,409</td><td>102,191</td><td class="fail">78.9%</td></tr>
 <tr><td>MPAS-O Vertical Reduce (remapped)</td><td>remapped/freshwaterContent</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
 <tr><td>MPAS-O Vertical Reduce (remapped)</td><td>remapped/kineticEnergy</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>iceAreaTotal</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>iceVolumeTotal</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>snowVolumeTotal</td><td>930,088</td><td>930,088</td><td>0</td><td class="pass">0.0%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>iceThicknessMean</td><td>930,088</td><td>96,181</td><td>833,907</td><td class="fail">89.7%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>surfaceTemperatureMean</td><td>930,088</td><td>96,181</td><td>833,907</td><td class="fail">89.7%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>airStressZonal</td><td>930,088</td><td>96,181</td><td>833,907</td><td class="fail">89.7%</td></tr>
-<tr><td>MPAS-SI Derived Fields (native)</td><td>airStressMeridional</td><td>930,088</td><td>96,181</td><td>833,907</td><td class="fail">89.7%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>iceAreaTotal</td><td>1,395,132</td><td>1,395,132</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>iceVolumeTotal</td><td>1,395,132</td><td>1,395,132</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>snowVolumeTotal</td><td>1,395,132</td><td>1,395,132</td><td>0</td><td class="pass">0.0%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>iceThicknessMean</td><td>1,395,132</td><td>137,305</td><td>1,257,827</td><td class="fail">90.2%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>surfaceTemperatureMean</td><td>1,395,132</td><td>137,305</td><td>1,257,827</td><td class="fail">90.2%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>airStressZonal</td><td>1,395,132</td><td>137,305</td><td>1,257,827</td><td class="fail">90.2%</td></tr>
+<tr><td>MPAS-SI Derived Fields (native)</td><td>airStressMeridional</td><td>1,395,132</td><td>137,305</td><td>1,257,827</td><td class="fail">90.2%</td></tr>
 <tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceAreaTotal</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
 <tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/iceVolumeTotal</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
 <tr><td>MPAS-SI Derived Fields (remapped)</td><td>remapped/snowVolumeTotal</td><td>129,600</td><td>89,784</td><td>39,816</td><td class="pass">30.7%</td></tr>
@@ -424,38 +615,38 @@
     <table class="timing-table">
     <tr><td>*****</td><td>GLOBAL</td><td>STATISTICS</td><td>(</td><td>512</td><td>MPI</td><td>TASKS)</td><td>*****</td></tr>
 <tr><td>name</td><td>on</td><td>processes</td><td>threads</td><td>count</td><td>walltotal</td><td>wallmax</td><td>(proc</td><td>thrd</td><td>)</td><td>wallmin</td><td>(proc</td><td>thrd</td><td>)</td></tr>
-<tr><td>"CPL:INIT"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.440851e+04</td><td>87.026</td><td>(</td><td>67</td><td>0)</td><td>86.697</td><td>(</td><td>138</td><td>0)</td></tr>
-<tr><td>"CPL:cime_pre_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.652142e+03</td><td>3.518</td><td>(</td><td>68</td><td>0)</td><td>3.190</td><td>(</td><td>165</td><td>0)</td></tr>
-<tr><td>"CPL:mpi_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>7.556530e+02</td><td>1.767</td><td>(</td><td>68</td><td>0)</td><td>1.439</td><td>(</td><td>163</td><td>0)</td></tr>
-<tr><td>"CPL:ESMF_Initialize"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>7.860306e-01</td><td>0.003</td><td>(</td><td>387</td><td>0)</td><td>0.000</td><td>(</td><td>458</td><td>0)</td></tr>
-<tr><td>"CPL:cime_pre_init2"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.122836e+02</td><td>0.222</td><td>(</td><td>360</td><td>0)</td><td>0.216</td><td>(</td><td>431</td><td>0)</td></tr>
-<tr><td>"CPL:seq_infodata_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.743485e+01</td><td>0.071</td><td>(</td><td>460</td><td>0)</td><td>0.006</td><td>(</td><td>448</td><td>0)</td></tr>
-<tr><td>"CPL:seq_timemgr_clockInit"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.785731e+00</td><td>0.010</td><td>(</td><td>16</td><td>0)</td><td>0.004</td><td>(</td><td>438</td><td>0)</td></tr>
-<tr><td>"CPL:cime_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.264317e+04</td><td>83.290</td><td>(</td><td>350</td><td>0)</td><td>83.286</td><td>(</td><td>151</td><td>0)</td></tr>
-<tr><td>"CPL:init_comps"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.465252e+04</td><td>67.685</td><td>(</td><td>127</td><td>0)</td><td>67.668</td><td>(</td><td>511</td><td>0)</td></tr>
-<tr><td>"CPL:comp_init_pre_all"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.450343e-01</td><td>0.002</td><td>(</td><td>421</td><td>0)</td><td>0.000</td><td>(</td><td>332</td><td>0)</td></tr>
-<tr><td>"comp_init_cc_iac"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.935254e+00</td><td>0.006</td><td>(</td><td>350</td><td>0)</td><td>0.003</td><td>(</td><td>247</td><td>0)</td></tr>
-<tr><td>"z_i:comp_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>5.396731e-01</td><td>0.001</td><td>(</td><td>340</td><td>0)</td><td>0.000</td><td>(</td><td>402</td><td>0)</td></tr>
-<tr><td>"CPL:comp_init_cc_atm"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.677256e+04</td><td>32.759</td><td>(</td><td>280</td><td>0)</td><td>32.759</td><td>(</td><td>240</td><td>0)</td></tr>
-<tr><td>"a_i:comp_init"</td><td>-</td><td>512</td><td>512</td><td>1.024000e+03</td><td>1.842417e+04</td><td>36.041</td><td>(</td><td>253</td><td>0)</td><td>35.873</td><td>(</td><td>129</td><td>0)</td></tr>
-<tr><td>"a_i:cam_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.666303e+04</td><td>32.547</td><td>(</td><td>330</td><td>0)</td><td>32.544</td><td>(</td><td>284</td><td>0)</td></tr>
-<tr><td>"a_i:cam_initfiles_open"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>6.904833e+01</td><td>0.137</td><td>(</td><td>243</td><td>0)</td><td>0.134</td><td>(</td><td>262</td><td>0)</td></tr>
-<tr><td>"a_i:cam_initial"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.672983e+03</td><td>5.221</td><td>(</td><td>0</td><td>0)</td><td>5.221</td><td>(</td><td>248</td><td>0)</td></tr>
-<tr><td>"a_i:dyn_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>5.943738e+01</td><td>0.121</td><td>(</td><td>85</td><td>0)</td><td>0.109</td><td>(</td><td>269</td><td>0)</td></tr>
-<tr><td>"a_i:hycoef_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.147675e+01</td><td>0.026</td><td>(</td><td>101</td><td>0)</td><td>0.019</td><td>(</td><td>264</td><td>0)</td></tr>
-<tr><td>"a_i:prim_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.974840e+01</td><td>0.084</td><td>(</td><td>29</td><td>0)</td><td>0.071</td><td>(</td><td>176</td><td>0)</td></tr>
-<tr><td>"a_i:repro_sum_finalsum"</td><td>-</td><td>512</td><td>512</td><td>4.505600e+04</td><td>1.563218e-02</td><td>0.000</td><td>(</td><td>377</td><td>0)</td><td>0.000</td><td>(</td><td>65</td><td>0)</td></tr>
-<tr><td>"a_i:compose_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>9.154412e+00</td><td>0.022</td><td>(</td><td>114</td><td>0)</td><td>0.014</td><td>(</td><td>429</td><td>0)</td></tr>
-<tr><td>"a_i:sl_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.571949e+00</td><td>0.009</td><td>(</td><td>317</td><td>0)</td><td>0.001</td><td>(</td><td>355</td><td>0)</td></tr>
-<tr><td>"a_i:phys_grid_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.305170e+01</td><td>0.033</td><td>(</td><td>228</td><td>0)</td><td>0.021</td><td>(</td><td>6</td><td>0)</td></tr>
-<tr><td>"a_i:initial_conds"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.562563e+03</td><td>5.019</td><td>(</td><td>137</td><td>0)</td><td>4.992</td><td>(</td><td>400</td><td>0)</td></tr>
-<tr><td>"a_i:PIO:initdecomp"</td><td>-</td><td>512</td><td>512</td><td>3.072000e+03</td><td>2.284489e+01</td><td>0.047</td><td>(</td><td>481</td><td>0)</td><td>0.044</td><td>(</td><td>407</td><td>0)</td></tr>
-<tr><td>"a_i:PIO:PIOc_initdecomp"</td><td>-</td><td>512</td><td>512</td><td>3.072000e+03</td><td>2.276047e+01</td><td>0.047</td><td>(</td><td>320</td><td>0)</td><td>0.043</td><td>(</td><td>407</td><td>0)</td></tr>
-<tr><td>"a_i:dyn_init2"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.141120e+01</td><td>0.071</td><td>(</td><td>400</td><td>0)</td><td>0.055</td><td>(</td><td>155</td><td>0)</td></tr>
+<tr><td>"CPL:INIT"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.469645e+04</td><td>87.700</td><td>(</td><td>69</td><td>0)</td><td>87.122</td><td>(</td><td>346</td><td>0)</td></tr>
+<tr><td>"CPL:cime_pre_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.183787e+03</td><td>2.714</td><td>(</td><td>69</td><td>0)</td><td>2.137</td><td>(</td><td>314</td><td>0)</td></tr>
+<tr><td>"CPL:mpi_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>9.269350e+02</td><td>2.212</td><td>(</td><td>44</td><td>0)</td><td>1.635</td><td>(</td><td>270</td><td>0)</td></tr>
+<tr><td>"CPL:ESMF_Initialize"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>7.170277e-01</td><td>0.003</td><td>(</td><td>205</td><td>0)</td><td>0.000</td><td>(</td><td>448</td><td>0)</td></tr>
+<tr><td>"CPL:cime_pre_init2"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.375096e+02</td><td>0.272</td><td>(</td><td>118</td><td>0)</td><td>0.265</td><td>(</td><td>271</td><td>0)</td></tr>
+<tr><td>"CPL:seq_infodata_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.595154e+01</td><td>0.110</td><td>(</td><td>284</td><td>0)</td><td>0.008</td><td>(</td><td>466</td><td>0)</td></tr>
+<tr><td>"CPL:seq_timemgr_clockInit"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.359209e+00</td><td>0.010</td><td>(</td><td>463</td><td>0)</td><td>0.003</td><td>(</td><td>341</td><td>0)</td></tr>
+<tr><td>"CPL:cime_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.337432e+04</td><td>84.718</td><td>(</td><td>344</td><td>0)</td><td>84.714</td><td>(</td><td>480</td><td>0)</td></tr>
+<tr><td>"CPL:init_comps"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.730510e+04</td><td>72.865</td><td>(</td><td>344</td><td>0)</td><td>72.850</td><td>(</td><td>511</td><td>0)</td></tr>
+<tr><td>"CPL:comp_init_pre_all"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.732083e-01</td><td>0.002</td><td>(</td><td>244</td><td>0)</td><td>0.000</td><td>(</td><td>237</td><td>0)</td></tr>
+<tr><td>"comp_init_cc_iac"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.783574e+00</td><td>0.007</td><td>(</td><td>2</td><td>0)</td><td>0.004</td><td>(</td><td>487</td><td>0)</td></tr>
+<tr><td>"z_i:comp_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>5.474641e-01</td><td>0.002</td><td>(</td><td>493</td><td>0)</td><td>0.000</td><td>(</td><td>0</td><td>0)</td></tr>
+<tr><td>"CPL:comp_init_cc_atm"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.114172e+04</td><td>41.292</td><td>(</td><td>201</td><td>0)</td><td>41.292</td><td>(</td><td>268</td><td>0)</td></tr>
+<tr><td>"a_i:comp_init"</td><td>-</td><td>512</td><td>512</td><td>1.024000e+03</td><td>2.320497e+04</td><td>45.375</td><td>(</td><td>504</td><td>0)</td><td>45.198</td><td>(</td><td>392</td><td>0)</td></tr>
+<tr><td>"a_i:cam_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>2.101632e+04</td><td>41.049</td><td>(</td><td>386</td><td>0)</td><td>41.046</td><td>(</td><td>425</td><td>0)</td></tr>
+<tr><td>"a_i:cam_initfiles_open"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>8.553975e+01</td><td>0.169</td><td>(</td><td>386</td><td>0)</td><td>0.166</td><td>(</td><td>441</td><td>0)</td></tr>
+<tr><td>"a_i:cam_initial"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.498737e+03</td><td>6.834</td><td>(</td><td>0</td><td>0)</td><td>6.833</td><td>(</td><td>342</td><td>0)</td></tr>
+<tr><td>"a_i:dyn_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>8.125278e+01</td><td>0.165</td><td>(</td><td>357</td><td>0)</td><td>0.151</td><td>(</td><td>211</td><td>0)</td></tr>
+<tr><td>"a_i:hycoef_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.150431e+01</td><td>0.026</td><td>(</td><td>13</td><td>0)</td><td>0.019</td><td>(</td><td>175</td><td>0)</td></tr>
+<tr><td>"a_i:prim_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>4.675425e+01</td><td>0.096</td><td>(</td><td>162</td><td>0)</td><td>0.087</td><td>(</td><td>111</td><td>0)</td></tr>
+<tr><td>"a_i:repro_sum_finalsum"</td><td>-</td><td>512</td><td>512</td><td>4.505600e+04</td><td>1.529392e-02</td><td>0.000</td><td>(</td><td>357</td><td>0)</td><td>0.000</td><td>(</td><td>352</td><td>0)</td></tr>
+<tr><td>"a_i:compose_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>8.907775e+00</td><td>0.021</td><td>(</td><td>203</td><td>0)</td><td>0.014</td><td>(</td><td>306</td><td>0)</td></tr>
+<tr><td>"a_i:sl_init1"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.953279e+00</td><td>0.008</td><td>(</td><td>227</td><td>0)</td><td>0.001</td><td>(</td><td>439</td><td>0)</td></tr>
+<tr><td>"a_i:phys_grid_init"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>1.409157e+01</td><td>0.036</td><td>(</td><td>211</td><td>0)</td><td>0.020</td><td>(</td><td>260</td><td>0)</td></tr>
+<tr><td>"a_i:initial_conds"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.366254e+03</td><td>6.589</td><td>(</td><td>172</td><td>0)</td><td>6.562</td><td>(</td><td>404</td><td>0)</td></tr>
+<tr><td>"a_i:PIO:initdecomp"</td><td>-</td><td>512</td><td>512</td><td>3.072000e+03</td><td>3.050195e+01</td><td>0.062</td><td>(</td><td>224</td><td>0)</td><td>0.058</td><td>(</td><td>9</td><td>0)</td></tr>
+<tr><td>"a_i:PIO:PIOc_initdecomp"</td><td>-</td><td>512</td><td>512</td><td>3.072000e+03</td><td>3.041833e+01</td><td>0.062</td><td>(</td><td>224</td><td>0)</td><td>0.058</td><td>(</td><td>9</td><td>0)</td></tr>
+<tr><td>"a_i:dyn_init2"</td><td>-</td><td>512</td><td>512</td><td>5.120000e+02</td><td>3.058306e+01</td><td>0.069</td><td>(</td><td>404</td><td>0)</td><td>0.053</td><td>(</td><td>239</td><td>0)</td></tr>
 
     </table>
     </div>
 
     </div>
-    <footer>Generated by verify_fme_output.py &mdash; FME Online Output Processing for E3SM &mdash; 2026-04-04 12:42:59</footer>
+    <footer>Generated by verify_fme_output.py &mdash; FME Online Output Processing for E3SM &mdash; 2026-04-04 17:11:36</footer>
     </body></html>

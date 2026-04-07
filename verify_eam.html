@@ -78,7 +78,7 @@
     </head><body>
     <header>
       <h1>EAM FME Online Output Verification</h1>
-      <span class="status">21 issues in 1/2 components</span>
+      <span class="status">6 issues in 1/2 components</span>
     </header>
     <div class="container">
 
@@ -95,30 +95,15 @@
     <table>
     <tr><th>Component</th><th>Status</th><th>Issues</th></tr>
     <tr><td>EAM</td><td class="pass">PASS</td><td>0</td></tr>
-<tr><td>Cross-Verify</td><td class="fail">FAIL</td><td>21</td></tr>
+<tr><td>Cross-Verify</td><td class="fail">FAIL</td><td>6</td></tr>
 
     </table>
 
-    <details><summary>Show all 21 issues</summary><table><tr><th>Component</th><th>Issue</th></tr><tr><td>Cross-Verify</td><td>GMEAN PS: rel_diff = 0.01859</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN TS: rel_diff = 0.03017</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN PHIS: rel_diff = 0.6369</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN LANDFRAC: rel_diff = 0.1705</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN OCNFRAC: rel_diff = 0.2164</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN ICEFRAC: rel_diff = 1.765</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN SOLIN: rel_diff = 0.07026</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN FSNTOA: rel_diff = 0.1727</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN FLUT: rel_diff = 0.05217</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN FLDS: rel_diff = 0.108</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN FSDS: rel_diff = 0.03331</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN LHFLX: rel_diff = 0.267</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN SHFLX: rel_diff = 0.281</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN TAUX: rel_diff = 0.1086</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN TAUY: rel_diff = 0.2694</td></tr>
-<tr><td>Cross-Verify</td><td>GMEAN PRECT: rel_diff = 0.207</td></tr>
-<tr><td>Cross-Verify</td><td>VCOARSEN T: max|rel| = 2.07e-02</td></tr>
-<tr><td>Cross-Verify</td><td>VCOARSEN U: max|rel| = 2.00e+00</td></tr>
-<tr><td>Cross-Verify</td><td>VCOARSEN V: max|rel| = 3.65e+00</td></tr>
-<tr><td>Cross-Verify</td><td>VCOARSEN STW: max|rel| = 2.46e-01</td></tr>
+    <details><summary>Show all 6 issues</summary><table><tr><th>Component</th><th>Issue</th></tr><tr><td>Cross-Verify</td><td>GMEAN ICEFRAC: rel_diff = 0.0966</td></tr>
+<tr><td>Cross-Verify</td><td>GMEAN TAUX: rel_diff = 0.3688</td></tr>
+<tr><td>Cross-Verify</td><td>GMEAN TAUY: rel_diff = 0.02117</td></tr>
+<tr><td>Cross-Verify</td><td>VCOARSEN U: max|rel| = 1.07e+00</td></tr>
+<tr><td>Cross-Verify</td><td>VCOARSEN V: max|rel| = 4.30e+01</td></tr>
 <tr><td>Cross-Verify</td><td>LINEARITY STW: max|rel| = 2.46e-01</td></tr>
 </table></details>
 
@@ -190,31 +175,31 @@
 
     <h2 id="Cross_Verify">Cross-Verification: FME vs Legacy</h2>
 <p>Both cases run identical physics from the same ICs. FME diagnostics are output-only and do not modify model state.</p>
-<h3>Global-Mean Comparison (different grids, <1% tolerance) <span class="fail">(0/16)</span></h3>
+<h3>Global-Mean Comparison (different grids, <1% tolerance) <span class="fail">(13/16)</span></h3>
 <table><tr><th>Field</th><th>Status</th><th>Detail</th></tr>
-<tr><td>PS</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=96771, leg=98604.1, rel=1.86e-02</td></tr>
-<tr><td>TS</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=278.059, leg=286.709, rel=3.02e-02</td></tr>
-<tr><td>PHIS</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=3656.53, leg=2233.85, rel=6.37e-01</td></tr>
-<tr><td>LANDFRAC</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=0.342625, leg=0.292714, rel=1.71e-01</td></tr>
-<tr><td>OCNFRAC</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=0.513431, leg=0.655231, rel=2.16e-01</td></tr>
-<tr><td>ICEFRAC</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=0.143941, leg=0.0520547, rel=1.77e+00</td></tr>
-<tr><td>SOLIN</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=326.871, leg=351.571, rel=7.03e-02</td></tr>
-<tr><td>FSNTOA</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=204.806, leg=247.548, rel=1.73e-01</td></tr>
-<tr><td>FLUT</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=226.981, leg=239.475, rel=5.22e-02</td></tr>
-<tr><td>FLDS</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=300.938, leg=337.361, rel=1.08e-01</td></tr>
-<tr><td>FSDS</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=189.689, leg=196.227, rel=3.33e-02</td></tr>
-<tr><td>LHFLX</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=58.8098, leg=80.2349, rel=2.67e-01</td></tr>
-<tr><td>SHFLX</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=12.729, leg=17.7042, rel=2.81e-01</td></tr>
-<tr><td>TAUX</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=-0.00834117, leg=-0.00752412, rel=1.09e-01</td></tr>
-<tr><td>TAUY</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=0.00621817, leg=0.00851127, rel=2.69e-01</td></tr>
-<tr><td>PRECT</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=2.54728e-08, leg=3.21221e-08, rel=2.07e-01</td></tr>
+<tr><td>PS</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=98541.6, leg=98604.1, rel=6.34e-04</td></tr>
+<tr><td>TS</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=286.602, leg=286.709, rel=3.72e-04</td></tr>
+<tr><td>PHIS</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=2269.56, leg=2233.85, rel=1.60e-02</td></tr>
+<tr><td>LANDFRAC</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=0.293414, leg=0.292714, rel=2.39e-03</td></tr>
+<tr><td>OCNFRAC</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=0.649502, leg=0.655231, rel=8.74e-03</td></tr>
+<tr><td>ICEFRAC</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=0.0570834, leg=0.0520547, rel=9.66e-02</td></tr>
+<tr><td>SOLIN</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=351.805, leg=351.571, rel=6.68e-04</td></tr>
+<tr><td>FSNTOA</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=247.151, leg=247.548, rel=1.60e-03</td></tr>
+<tr><td>FLUT</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=239.607, leg=239.475, rel=5.52e-04</td></tr>
+<tr><td>FLDS</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=337.224, leg=337.361, rel=4.04e-04</td></tr>
+<tr><td>FSDS</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=197.289, leg=196.227, rel=5.42e-03</td></tr>
+<tr><td>LHFLX</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=80.3645, leg=80.2349, rel=1.62e-03</td></tr>
+<tr><td>SHFLX</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=17.4429, leg=17.7042, rel=1.48e-02</td></tr>
+<tr><td>TAUX</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=-0.00474899, leg=-0.00752412, rel=3.69e-01</td></tr>
+<tr><td>TAUY</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=0.00833106, leg=0.00851127, rel=2.12e-02</td></tr>
+<tr><td>PRECT</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=3.17905e-08, leg=3.21221e-08, rel=1.03e-02</td></tr>
 </table>
-<h3>Online vs Offline Vcoarsen (proves online replaces offline) <span class="fail">(0/4)</span></h3>
+<h3>Online vs Offline Vcoarsen (proves online replaces offline) <span class="fail">(2/4)</span></h3>
 <table><tr><th>Field</th><th>Status</th><th>Detail</th></tr>
-<tr><td>T</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">max|diff|=5.66e+00, max|rel|=2.07e-02</td></tr>
-<tr><td>U</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">max|diff|=3.04e+00, max|rel|=2.00e+00</td></tr>
-<tr><td>V</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">max|diff|=1.54e-01, max|rel|=3.65e+00</td></tr>
-<tr><td>STW</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">max|diff|=1.81e-03, max|rel|=2.46e-01</td></tr>
+<tr><td>T</td><td class="pass">CLOSE</td><td style="font-family:monospace;font-size:0.85em">max|diff|=1.38e-01, max|rel|=6.72e-04</td></tr>
+<tr><td>U</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">max|diff|=6.04e-01, max|rel|=1.07e+00</td></tr>
+<tr><td>V</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">max|diff|=2.20e-02, max|rel|=4.30e+01</td></tr>
+<tr><td>STW</td><td class="pass">CLOSE</td><td style="font-family:monospace;font-size:0.85em">max|diff|=2.65e-05, max|rel|=7.34e-03</td></tr>
 </table>
 <h3>Vcoarsen Linearity (STW_k = sum of component_k) <span class="fail">(0/1)</span></h3>
 <table><tr><th>Field</th><th>Status</th><th>Detail</th></tr>
@@ -285,5 +270,5 @@
     </div>
 
     </div>
-    <footer>Generated by verify_eam.py &mdash; EAM FME Online Output Verification for E3SM &mdash; 2026-04-07 14:46:46</footer>
+    <footer>Generated by verify_eam.py &mdash; EAM FME Online Output Verification for E3SM &mdash; 2026-04-07 14:58:52</footer>
     </body></html>

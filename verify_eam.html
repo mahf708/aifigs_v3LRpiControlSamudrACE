@@ -54,8 +54,50 @@
       .lightbox.active { display:flex; }
       .lightbox img { max-width:95%; max-height:95%; border-radius:6px;
                        box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+      /* Tabs */
+      .tabs { display:flex; flex-wrap:wrap; gap:4px; margin:16px 0 0; }
+      .tab { padding:8px 18px; border:none; background:#e0e4ea; color:#1a2744;
+              cursor:pointer; font-weight:600; font-size:0.9em; border-radius:6px 6px 0 0;
+              transition: all 0.15s; }
+      .tab:hover { background:#c8d0dc; }
+      .tab.active { background:#1a2744; color:#fff; }
+      .badge { background:rgba(255,255,255,0.25); padding:2px 7px; border-radius:10px;
+                font-size:0.8em; margin-left:4px; }
+      .tab-content { background:#fff; padding:18px; border-radius:0 6px 6px 6px;
+                      box-shadow:0 1px 3px rgba(0,0,0,0.08); margin-bottom:16px; }
+      /* Sortable table header */
+      .sortable th { cursor:pointer; user-select:none; position:relative; padding-right:20px; }
+      .sortable th:after { content:''; position:absolute; right:6px; top:50%;
+                            transform:translateY(-50%); opacity:0.3; }
+      .sortable th:hover { background:#2a3d5c; }
     </style>
     <script>
+    function showTab(id) {
+      document.querySelectorAll('.tab-content').forEach(function(el) { el.style.display='none'; });
+      document.querySelectorAll('.tab').forEach(function(el) { el.classList.remove('active'); });
+      var tab = document.getElementById('tab_' + id);
+      if (tab) tab.style.display = '';
+      // Find the button for this tab
+      document.querySelectorAll('.tab').forEach(function(btn) {
+        if (btn.textContent.indexOf(id) >= 0 || btn.getAttribute('onclick').indexOf(id) >= 0)
+          btn.classList.add('active');
+      });
+    }
+    function sortTable(th, col) {
+      var table = th.closest('table');
+      var tbody = table.querySelector('tbody');
+      var rows = Array.from(tbody.querySelectorAll('tr'));
+      var asc = th.dataset.sort !== 'asc';
+      th.dataset.sort = asc ? 'asc' : 'desc';
+      rows.sort(function(a, b) {
+        var va = a.cells[col].textContent.trim();
+        var vb = b.cells[col].textContent.trim();
+        var na = parseFloat(va), nb = parseFloat(vb);
+        if (!isNaN(na) && !isNaN(nb)) return asc ? na - nb : nb - na;
+        return asc ? va.localeCompare(vb) : vb.localeCompare(va);
+      });
+      rows.forEach(function(r) { tbody.appendChild(r); });
+    }
     document.addEventListener('DOMContentLoaded', function() {
       var lb = document.createElement('div');
       lb.className = 'lightbox';
@@ -88,6 +130,7 @@
 <a href="#Cross_Verify">Cross Verify</a>
 <a href="#EAM">EAM</a>
 <a href="#Comparisons">Comparisons</a>
+<a href="#Cross_Verify">Cross-Verify</a>
 <a href="#Timing">Timing</a>
 </nav>
 
@@ -174,9 +217,17 @@
     </details>
 
     <h2 id="Cross_Verify">Cross-Verification: FME vs Legacy</h2>
-<p>Both cases run identical physics from the same ICs. FME diagnostics are output-only and do not modify model state.</p>
-<h3>Global-Mean Comparison (different grids, <1% tolerance) <span class="fail">(13/16)</span></h3>
-<table><tr><th>Field</th><th>Status</th><th>Detail</th></tr>
+<p>Both cases run identical physics from the same ICs. FME diagnostics are output-only and do not modify model state. <strong>15 pass, 6 fail, 1 info</strong></p>
+<div class="tabs">
+<button class="tab active" onclick="showTab('GMEAN')">Global Means <span class="badge">13/16</span></button>
+<button class="tab" onclick="showTab('VCOARSEN')">Vcoarsen <span class="badge">2/4</span></button>
+<button class="tab" onclick="showTab('LINEARITY')">Linearity <span class="badge">0/1</span></button>
+<button class="tab" onclick="showTab('STORAGE')">Storage <span class="badge">0/1</span></button>
+<button class="tab" onclick="showTab('PLOTS')">Figures</button>
+</div>
+<div class="tab-content" id="tab_GMEAN">
+<h3>Area-Weighted Global-Mean Comparison (cos-lat weighted, &lt;2% tolerance) <span class="fail">(13/16)</span></h3>
+<table class="sortable"><thead><tr><th onclick="sortTable(this,0)">Field</th><th onclick="sortTable(this,1)">Status</th><th onclick="sortTable(this,2)">Detail</th></tr></thead><tbody>
 <tr><td>PS</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=98541.6, leg=98604.1, rel=6.34e-04</td></tr>
 <tr><td>TS</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=286.602, leg=286.709, rel=3.72e-04</td></tr>
 <tr><td>PHIS</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=2269.56, leg=2233.85, rel=1.60e-02</td></tr>
@@ -193,22 +244,44 @@
 <tr><td>TAUX</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=-0.00474899, leg=-0.00752412, rel=3.69e-01</td></tr>
 <tr><td>TAUY</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">fme=0.00833106, leg=0.00851127, rel=2.12e-02</td></tr>
 <tr><td>PRECT</td><td class="pass">PASS</td><td style="font-family:monospace;font-size:0.85em">fme=3.17905e-08, leg=3.21221e-08, rel=1.03e-02</td></tr>
-</table>
-<h3>Online vs Offline Vcoarsen (proves online replaces offline) <span class="fail">(2/4)</span></h3>
-<table><tr><th>Field</th><th>Status</th><th>Detail</th></tr>
+</tbody></table>
+</div>
+<div class="tab-content" id="tab_VCOARSEN" style="display:none">
+<h3>Online vs Offline Vcoarsen (area-weighted global mean comparison) <span class="fail">(2/4)</span></h3>
+<table class="sortable"><thead><tr><th onclick="sortTable(this,0)">Field</th><th onclick="sortTable(this,1)">Status</th><th onclick="sortTable(this,2)">Detail</th></tr></thead><tbody>
 <tr><td>T</td><td class="pass">CLOSE</td><td style="font-family:monospace;font-size:0.85em">max|diff|=1.38e-01, max|rel|=6.72e-04</td></tr>
 <tr><td>U</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">max|diff|=6.04e-01, max|rel|=1.07e+00</td></tr>
 <tr><td>V</td><td class="fail">DIFF</td><td style="font-family:monospace;font-size:0.85em">max|diff|=2.20e-02, max|rel|=4.30e+01</td></tr>
 <tr><td>STW</td><td class="pass">CLOSE</td><td style="font-family:monospace;font-size:0.85em">max|diff|=2.65e-05, max|rel|=7.34e-03</td></tr>
-</table>
+</tbody></table>
+</div>
+<div class="tab-content" id="tab_LINEARITY" style="display:none">
 <h3>Vcoarsen Linearity (STW_k = sum of component_k) <span class="fail">(0/1)</span></h3>
-<table><tr><th>Field</th><th>Status</th><th>Detail</th></tr>
+<table class="sortable"><thead><tr><th onclick="sortTable(this,0)">Field</th><th onclick="sortTable(this,1)">Status</th><th onclick="sortTable(this,2)">Detail</th></tr></thead><tbody>
 <tr><td>STW_k</td><td class="fail">FAIL</td><td style="font-family:monospace;font-size:0.85em">STW_k vs sum(Q_k+CLDICE_k+CLDLIQ_k+RAINQM_k): max|rel|=2.46e-01</td></tr>
-</table>
+</tbody></table>
+</div>
+<div class="tab-content" id="tab_STORAGE" style="display:none">
 <h3>Storage Comparison <span class="fail">(0/1)</span></h3>
-<table><tr><th>Field</th><th>Status</th><th>Detail</th></tr>
+<table class="sortable"><thead><tr><th onclick="sortTable(this,0)">Field</th><th onclick="sortTable(this,1)">Status</th><th onclick="sortTable(this,2)">Detail</th></tr></thead><tbody>
 <tr><td>total NC files</td><td class="">INFO</td><td style="font-family:monospace;font-size:0.85em">FME: 23 files / 2.16 GB, Legacy: 7 files / 1.57 GB, ratio: 1.38x</td></tr>
-</table>
+</tbody></table>
+</div>
+<div class="tab-content" id="tab_PLOTS" style="display:none">
+<h3>Native vs Remapped Comparison Figures</h3>
+<p>Left: native ne30pg2 (tripcolor). Right: remapped Gaussian lat-lon (pcolormesh).</p>
+<div class="gallery">
+<div class="fig wide"><a href="fme_output/cross_verify/xv_native_vs_remap_TS.png"><img src="fme_output/cross_verify/xv_native_vs_remap_TS.png"/></a><span>xv_native_vs_remap_TS.png</span></div>
+<div class="fig wide"><a href="fme_output/cross_verify/xv_native_vs_remap_PS.png"><img src="fme_output/cross_verify/xv_native_vs_remap_PS.png"/></a><span>xv_native_vs_remap_PS.png</span></div>
+<div class="fig wide"><a href="fme_output/cross_verify/xv_native_vs_remap_LHFLX.png"><img src="fme_output/cross_verify/xv_native_vs_remap_LHFLX.png"/></a><span>xv_native_vs_remap_LHFLX.png</span></div>
+<div class="fig wide"><a href="fme_output/cross_verify/xv_native_vs_remap_PRECT.png"><img src="fme_output/cross_verify/xv_native_vs_remap_PRECT.png"/></a><span>xv_native_vs_remap_PRECT.png</span></div>
+<div class="fig wide"><a href="fme_output/cross_verify/xv_native_vs_remap_ICEFRAC.png"><img src="fme_output/cross_verify/xv_native_vs_remap_ICEFRAC.png"/></a><span>xv_native_vs_remap_ICEFRAC.png</span></div>
+<div class="fig wide"><a href="fme_output/cross_verify/xv_native_vs_remap_FLUT.png"><img src="fme_output/cross_verify/xv_native_vs_remap_FLUT.png"/></a><span>xv_native_vs_remap_FLUT.png</span></div>
+<div class="fig wide"><a href="fme_output/cross_verify/xv_native_vs_remap_SOLIN.png"><img src="fme_output/cross_verify/xv_native_vs_remap_SOLIN.png"/></a><span>xv_native_vs_remap_SOLIN.png</span></div>
+<div class="fig wide"><a href="fme_output/cross_verify/xv_fme_T_7_remap.png"><img src="fme_output/cross_verify/xv_fme_T_7_remap.png"/></a><span>xv_fme_T_7_remap.png</span></div>
+<div class="fig wide"><a href="fme_output/cross_verify/xv_fme_STW_7_remap.png"><img src="fme_output/cross_verify/xv_fme_STW_7_remap.png"/></a><span>xv_fme_STW_7_remap.png</span></div>
+</div>
+</div>
 
 
     <h2>Diagnostic Figures</h2>
@@ -228,6 +301,18 @@
 <div class="fig wide"><a href="fme_output/comparisons/eam_h0_T_all_layers.png"><img src="fme_output/comparisons/eam_h0_T_all_layers.png"/></a><span>eam_h0_T_all_layers.png</span></div>
 <div class="fig wide"><a href="fme_output/comparisons/eam_h0_STW_all_layers.png"><img src="fme_output/comparisons/eam_h0_STW_all_layers.png"/></a><span>eam_h0_STW_all_layers.png</span></div>
 <div class="fig wide"><a href="fme_output/comparisons/eam_h0_T_zonal_mean.png"><img src="fme_output/comparisons/eam_h0_T_zonal_mean.png"/></a><span>eam_h0_T_zonal_mean.png</span></div>
+</div>
+<h3 id="Cross_Verify">Cross-Verify</h3>
+<div class="gallery">
+<div class="fig"><a href="fme_output/cross_verify/xv_native_vs_remap_TS.png"><img src="fme_output/cross_verify/xv_native_vs_remap_TS.png"/></a><span>xv_native_vs_remap_TS.png</span></div>
+<div class="fig"><a href="fme_output/cross_verify/xv_native_vs_remap_PS.png"><img src="fme_output/cross_verify/xv_native_vs_remap_PS.png"/></a><span>xv_native_vs_remap_PS.png</span></div>
+<div class="fig"><a href="fme_output/cross_verify/xv_native_vs_remap_LHFLX.png"><img src="fme_output/cross_verify/xv_native_vs_remap_LHFLX.png"/></a><span>xv_native_vs_remap_LHFLX.png</span></div>
+<div class="fig"><a href="fme_output/cross_verify/xv_native_vs_remap_PRECT.png"><img src="fme_output/cross_verify/xv_native_vs_remap_PRECT.png"/></a><span>xv_native_vs_remap_PRECT.png</span></div>
+<div class="fig"><a href="fme_output/cross_verify/xv_native_vs_remap_ICEFRAC.png"><img src="fme_output/cross_verify/xv_native_vs_remap_ICEFRAC.png"/></a><span>xv_native_vs_remap_ICEFRAC.png</span></div>
+<div class="fig"><a href="fme_output/cross_verify/xv_native_vs_remap_FLUT.png"><img src="fme_output/cross_verify/xv_native_vs_remap_FLUT.png"/></a><span>xv_native_vs_remap_FLUT.png</span></div>
+<div class="fig"><a href="fme_output/cross_verify/xv_native_vs_remap_SOLIN.png"><img src="fme_output/cross_verify/xv_native_vs_remap_SOLIN.png"/></a><span>xv_native_vs_remap_SOLIN.png</span></div>
+<div class="fig"><a href="fme_output/cross_verify/xv_fme_T_7_remap.png"><img src="fme_output/cross_verify/xv_fme_T_7_remap.png"/></a><span>xv_fme_T_7_remap.png</span></div>
+<div class="fig"><a href="fme_output/cross_verify/xv_fme_STW_7_remap.png"><img src="fme_output/cross_verify/xv_fme_STW_7_remap.png"/></a><span>xv_fme_STW_7_remap.png</span></div>
 </div>
 
 
@@ -270,5 +355,5 @@
     </div>
 
     </div>
-    <footer>Generated by verify_eam.py &mdash; EAM FME Online Output Verification for E3SM &mdash; 2026-04-07 14:58:52</footer>
+    <footer>Generated by verify_eam.py &mdash; EAM FME Online Output Verification for E3SM &mdash; 2026-04-07 15:05:37</footer>
     </body></html>
